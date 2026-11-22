@@ -5,7 +5,11 @@
     "welcomeDescription": "Este espacio reúne y organiza de forma abierta los apuntes, guías prácticas, normativas y bibliografía de los cuatro semestres de la Tecnicatura en Logística. El objetivo es facilitar el acceso rápido al material de cada asignatura, acompañar el estudio diario y centralizar recursos clave para toda la comunidad estudiantil.",
     "heroImage": "assets/banners/hero-logistica.jpg",
     "heroVisualTheme": "Puerto de contenedores al atardecer, grúas portuarias y red logística global",
-    "contentSearchApiUrl": "https://script.google.com/macros/s/AKfycbxVGYNvDqGse-nHCC0WhSotTGdGHs58SfN9DVldmv-ZrLL7wS0SAgjpsTnYQCNxW7Y/exec"
+    "contentSearchApiUrl": "https://script.google.com/macros/s/AKfycbxVGYNvDqGse-nHCC0WhSotTGdGHs58SfN9DVldmv-ZrLL7wS0SAgjpsTnYQCNxW7Y/exec",
+    "version": "1.1",
+    "instructivoCode": "INS-WEB-01",
+    "instructivoRev": "Rev. 01",
+    "feedbackUrl": ""
   },
   "semestres": [
     {

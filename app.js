@@ -133,6 +133,8 @@
 
     favorites: new Set(),
     activeModalFileId: null,
+    lastPreviewTriggerEl: null,
+    lastInstructivoTriggerEl: null,
     ignoreNextHashChange: false,
     activeCatalogUpdatedAt: '',
     activeCatalogFingerprint: '',
@@ -156,6 +158,7 @@
     dom.modeTitleBtn = document.getElementById('modeTitleBtn');
     dom.modeContentBtn = document.getElementById('modeContentBtn');
 
+    dom.topInstructivoBtn = document.getElementById('topInstructivoBtn');
     dom.topFavBtn = document.getElementById('topFavBtn');
     dom.topFavCount = document.getElementById('topFavCount');
     dom.sidebarFavCount = document.getElementById('sidebarFavCount');
@@ -252,6 +255,24 @@
     dom.emptyStateDesc = document.getElementById('emptyStateDesc');
     dom.emptyStateAltBtn = document.getElementById('emptyStateAltBtn');
     dom.emptyStateActionBtn = document.getElementById('emptyStateActionBtn');
+
+    // Document Control Footer
+    dom.footerVersionText = document.getElementById('footerVersionText');
+    dom.footerSyncDateWrap = document.getElementById('footerSyncDateWrap');
+    dom.footerSyncDateText = document.getElementById('footerSyncDateText');
+    dom.footerInstructivoBtn = document.getElementById('footerInstructivoBtn');
+    dom.footerInstructivoCode = document.getElementById('footerInstructivoCode');
+    dom.footerFeedbackWrap = document.getElementById('footerFeedbackWrap');
+    dom.footerFeedbackLink = document.getElementById('footerFeedbackLink');
+
+    // Instructivo Modal (INS-WEB-01)
+    dom.instructivoModal = document.getElementById('instructivoModal');
+    dom.instructivoCodeBadge = document.getElementById('instructivoCodeBadge');
+    dom.instructivoCloseBtn = document.getElementById('instructivoCloseBtn');
+    dom.instructivoOkBtn = document.getElementById('instructivoOkBtn');
+    dom.instructivoFooterMeta = document.getElementById('instructivoFooterMeta');
+    dom.instructivoFeedbackWrap = document.getElementById('instructivoFeedbackWrap');
+    dom.instructivoFeedbackLink = document.getElementById('instructivoFeedbackLink');
 
     // Modal
     dom.previewModal = document.getElementById('previewModal');
@@ -2190,12 +2211,13 @@
     dom.emptyStateActionBtn.textContent = 'Limpiar filtros';
   }
 
-  // --- Visor Modal Integrado con Respaldo ---
+  // --- Visor Modal Integrado con Respaldo y Modal de Instructivo (INS-WEB-01) ---
 
-  function openPreviewModal(fileId) {
+  function openPreviewModal(fileId, triggerEl = null) {
     const file = state.filesById.get(fileId);
     if (!file) return;
 
+    state.lastPreviewTriggerEl = triggerEl || document.activeElement;
     state.activeModalFileId = file.id;
     const catMeta = CATEGORY_META[file.category] || CATEGORY_META.other;
 
@@ -2228,6 +2250,7 @@
     dom.modalFavBtn.classList.toggle('is-fav', isFav);
     dom.modalFavText.textContent = isFav ? 'En Favoritos' : 'Favorito';
     dom.modalFavBtn.setAttribute('title', isFav ? 'Quitar de Favoritos' : 'Guardar en Favoritos');
+    dom.modalFavBtn.setAttribute('aria-label', isFav ? 'Quitar de Favoritos' : 'Guardar en Favoritos');
   }
 
   function closePreviewModal() {
@@ -2235,7 +2258,74 @@
     dom.previewModal.classList.add('hidden');
     dom.previewIframe.src = 'about:blank';
     state.activeModalFileId = null;
-    document.body.style.overflow = '';
+    if (!dom.instructivoModal || dom.instructivoModal.classList.contains('hidden')) {
+      document.body.style.overflow = '';
+    }
+    if (
+      state.lastPreviewTriggerEl &&
+      document.body.contains(state.lastPreviewTriggerEl) &&
+      typeof state.lastPreviewTriggerEl.focus === 'function'
+    ) {
+      state.lastPreviewTriggerEl.focus();
+    }
+    state.lastPreviewTriggerEl = null;
+  }
+
+  function openInstructivoModal(triggerEl = null) {
+    if (!dom.instructivoModal) return;
+    state.lastInstructivoTriggerEl = triggerEl || document.activeElement;
+    dom.instructivoModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    if (dom.instructivoCloseBtn) {
+      dom.instructivoCloseBtn.focus();
+    }
+  }
+
+  function closeInstructivoModal() {
+    if (!dom.instructivoModal || dom.instructivoModal.classList.contains('hidden')) return;
+    dom.instructivoModal.classList.add('hidden');
+    if (dom.previewModal.classList.contains('hidden')) {
+      document.body.style.overflow = '';
+    }
+    if (
+      state.lastInstructivoTriggerEl &&
+      document.body.contains(state.lastInstructivoTriggerEl) &&
+      typeof state.lastInstructivoTriggerEl.focus === 'function'
+    ) {
+      state.lastInstructivoTriggerEl.focus();
+    }
+    state.lastInstructivoTriggerEl = null;
+  }
+
+  function applyPortalDocumentControlMeta() {
+    const portal = (state.materiasConfig && state.materiasConfig.portal) || {};
+    const version = cleanText(portal.version) || '1.1';
+    const code = cleanText(portal.instructivoCode) || 'INS-WEB-01';
+    const rev = cleanText(portal.instructivoRev) || 'Rev. 01';
+    const feedbackUrl = cleanText(portal.feedbackUrl);
+
+    if (dom.footerVersionText) {
+      dom.footerVersionText.textContent = `CTT Logística · Portal v${version}`;
+    }
+    if (dom.footerInstructivoCode) {
+      dom.footerInstructivoCode.textContent = code;
+    }
+    if (dom.instructivoCodeBadge) {
+      dom.instructivoCodeBadge.textContent = `${code} · ${rev}`;
+    }
+    if (dom.instructivoFooterMeta) {
+      dom.instructivoFooterMeta.textContent = `${code} · ${rev} · CTT Logística v${version}`;
+    }
+
+    if (feedbackUrl) {
+      if (dom.footerFeedbackLink) dom.footerFeedbackLink.href = feedbackUrl;
+      if (dom.footerFeedbackWrap) dom.footerFeedbackWrap.classList.remove('hidden');
+      if (dom.instructivoFeedbackLink) dom.instructivoFeedbackLink.href = feedbackUrl;
+      if (dom.instructivoFeedbackWrap) dom.instructivoFeedbackWrap.classList.remove('hidden');
+    } else {
+      if (dom.footerFeedbackWrap) dom.footerFeedbackWrap.classList.add('hidden');
+      if (dom.instructivoFeedbackWrap) dom.instructivoFeedbackWrap.classList.add('hidden');
+    }
   }
 
   // --- Control del Menú Lateral (Escritorio y Móvil) ---
@@ -2343,6 +2433,34 @@
       state.selectedCategory = 'all';
       setRouteHash('#favoritos');
     });
+
+    if (dom.topInstructivoBtn) {
+      dom.topInstructivoBtn.addEventListener('click', (e) => {
+        openInstructivoModal(e.currentTarget);
+      });
+    }
+
+    if (dom.footerInstructivoBtn) {
+      dom.footerInstructivoBtn.addEventListener('click', (e) => {
+        openInstructivoModal(e.currentTarget);
+      });
+    }
+
+    if (dom.instructivoCloseBtn) {
+      dom.instructivoCloseBtn.addEventListener('click', closeInstructivoModal);
+    }
+
+    if (dom.instructivoOkBtn) {
+      dom.instructivoOkBtn.addEventListener('click', closeInstructivoModal);
+    }
+
+    if (dom.instructivoModal) {
+      dom.instructivoModal.addEventListener('click', (e) => {
+        if (e.target === dom.instructivoModal) {
+          closeInstructivoModal();
+        }
+      });
+    }
 
     dom.topFavBtn.addEventListener('click', () => {
       if (state.routeType === 'favorites') {
@@ -2525,17 +2643,36 @@
       renderExplorerView();
     });
 
-    // Atajos de teclado '/' o Cmd/Ctrl+K
+    // Atajos de teclado '/' o Cmd/Ctrl+K y cierre con Esc
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !dom.previewModal.classList.contains('hidden')) {
-        closePreviewModal();
-        return;
+      if (e.key === 'Escape') {
+        if (dom.instructivoModal && !dom.instructivoModal.classList.contains('hidden')) {
+          e.preventDefault();
+          closeInstructivoModal();
+          return;
+        }
+        if (!dom.previewModal.classList.contains('hidden')) {
+          e.preventDefault();
+          closePreviewModal();
+          return;
+        }
       }
 
-      const activeTag = document.activeElement ? document.activeElement.tagName : '';
-      const isInputFocused = activeTag === 'INPUT' || activeTag === 'TEXTAREA' || activeTag === 'SELECT';
+      const activeEl = document.activeElement;
+      const activeTag = activeEl ? activeEl.tagName : '';
+      const isInputFocused =
+        activeTag === 'INPUT' ||
+        activeTag === 'TEXTAREA' ||
+        activeTag === 'SELECT' ||
+        Boolean(activeEl && activeEl.isContentEditable);
 
       if ((e.key === '/' && !isInputFocused) || ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k')) {
+        if (
+          (dom.instructivoModal && !dom.instructivoModal.classList.contains('hidden')) ||
+          !dom.previewModal.classList.contains('hidden')
+        ) {
+          return;
+        }
         e.preventDefault();
         if (state.routeType === 'subject' && !dom.localSearchWrap.classList.contains('hidden')) {
           dom.localSearchInput.focus();
@@ -2632,7 +2769,7 @@
 
       const fileCard = e.target.closest('[data-preview-file]');
       if (fileCard) {
-        openPreviewModal(fileCard.getAttribute('data-preview-file'));
+        openPreviewModal(fileCard.getAttribute('data-preview-file'), fileCard);
       }
     });
 
@@ -2641,7 +2778,7 @@
         const fileCard = e.target.closest('[data-preview-file]');
         if (fileCard && e.target === fileCard) {
           e.preventDefault();
-          openPreviewModal(fileCard.getAttribute('data-preview-file'));
+          openPreviewModal(fileCard.getAttribute('data-preview-file'), fileCard);
         }
       }
     });
@@ -2758,14 +2895,25 @@
   }
 
   function updateSyncDateUI(isoString) {
-    if (!dom.catalogSyncDateText) return;
     const formatted = formatSyncDateDDMMYYYY(isoString);
-    if (formatted) {
-      dom.catalogSyncDateText.textContent = `Catálogo actualizado: ${formatted}`;
-      dom.catalogSyncDateText.title = `Última sincronización: ${isoString}`;
-      dom.catalogSyncDateText.classList.remove('hidden');
-    } else {
-      dom.catalogSyncDateText.classList.add('hidden');
+    if (dom.catalogSyncDateText) {
+      if (formatted) {
+        dom.catalogSyncDateText.textContent = `Catálogo actualizado: ${formatted}`;
+        dom.catalogSyncDateText.title = `Última sincronización: ${isoString}`;
+        dom.catalogSyncDateText.classList.remove('hidden');
+      } else {
+        dom.catalogSyncDateText.classList.add('hidden');
+      }
+    }
+
+    if (dom.footerSyncDateWrap && dom.footerSyncDateText) {
+      if (formatted) {
+        dom.footerSyncDateText.textContent = `Catálogo actualizado: ${formatted}`;
+        dom.footerSyncDateText.title = `Última sincronización: ${isoString}`;
+        dom.footerSyncDateWrap.classList.remove('hidden');
+      } else {
+        dom.footerSyncDateWrap.classList.add('hidden');
+      }
     }
   }
 
@@ -2967,6 +3115,7 @@
         const configData = await configRes.json();
         buildMateriaLookup(configData);
       }
+      applyPortalDocumentControlMeta();
 
       let localCatalog = null;
       if (catalogRes && catalogRes.ok) {

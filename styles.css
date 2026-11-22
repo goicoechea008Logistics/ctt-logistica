@@ -2951,4 +2951,237 @@ body.sidebar-collapsed .sidebar {
   .btn-text-desktop {
     display: none;
   }
+
+  .instructivo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Accesibilidad por Teclado (ISO/IEC 40500 - WCAG :focus-visible)
+   ========================================================================== */
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible,
+select:focus-visible {
+  outline: 2.5px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Botón Instructivo en Barra Superior */
+.instructivo-pill-btn .instructivo-icon {
+  color: var(--brand-primary);
+}
+
+/* ==========================================================================
+   Pie de Página de Control Documental (ISO 9001)
+   ========================================================================== */
+.doc-control-footer {
+  margin-top: 40px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.doc-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  text-align: center;
+}
+
+.doc-footer-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.doc-footer-brand {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.doc-footer-sep {
+  color: var(--border-strong);
+  user-select: none;
+}
+
+.doc-footer-link {
+  border: none;
+  background: none;
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: var(--brand-primary);
+  font-size: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.doc-footer-link:hover {
+  text-decoration: underline;
+  background-color: var(--bg-surface-hover);
+}
+
+/* ==========================================================================
+   Ventana Modal: Instructivo de Uso del Portal (INS-WEB-01)
+   ========================================================================== */
+.instructivo-modal-container {
+  max-width: 860px;
+  height: auto;
+  max-height: 88vh;
+}
+
+.instructivo-modal-header {
+  flex-direction: row !important;
+  align-items: center !important;
+}
+
+.instructivo-header-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.instructivo-code-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: var(--radius-pill);
+  background-color: var(--brand-soft);
+  color: var(--brand-soft-text);
+  font-size: 0.71rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.instructivo-modal-title {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.instructivo-modal-body {
+  padding: 22px 24px;
+  background-color: var(--bg-app);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.instructivo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 720px) {
+  .instructivo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.instructivo-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-xs);
+}
+
+.instructivo-card-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid transparent;
+}
+
+.instructivo-card-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.instructivo-card-title {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 5px;
+}
+
+.instructivo-card-text {
+  font-size: 0.83rem;
+  line-height: 1.54;
+  color: var(--text-secondary);
+}
+
+.instructivo-list {
+  margin: 0;
+  padding-left: 16px;
+  font-size: 0.82rem;
+  line-height: 1.52;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.instructivo-card kbd,
+.instructivo-card code {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.instructivo-feedback-wrap {
+  margin-top: 10px;
+}
+
+.instructivo-feedback-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  background-color: var(--brand-soft);
+  color: var(--brand-soft-text);
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition: all 0.15s ease;
+}
+
+.instructivo-feedback-btn:hover {
+  background-color: var(--brand-primary);
+  color: #ffffff;
+}
+
+.instructivo-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 24px;
+}
+
+.instructivo-footer-meta {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-muted);
 }
