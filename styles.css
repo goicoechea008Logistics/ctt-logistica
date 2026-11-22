@@ -1493,6 +1493,30 @@ body.sidebar-collapsed .sidebar {
   font-weight: 600;
 }
 
+.subject-docente-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(15, 23, 42, 0.76);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #f8fafc;
+  font-size: 0.77rem;
+  font-weight: 600;
+  backdrop-filter: blur(6px);
+}
+
+.subject-docente-pill svg {
+  color: color-mix(in srgb, var(--banner-accent, #60a5fa) 65%, #ffffff);
+  flex-shrink: 0;
+}
+
+.subject-docente-pill strong {
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
 .subject-banner-title {
   font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
   font-size: 1.9rem;
@@ -1963,6 +1987,30 @@ body.sidebar-collapsed .sidebar {
   color: var(--text-primary);
   margin-bottom: 6px;
   line-height: 1.3;
+}
+
+.subject-card-docente {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.77rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.subject-card-docente svg {
+  color: var(--brand-primary);
+  flex-shrink: 0;
+}
+
+.subject-card-docente span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .subject-card-desc {

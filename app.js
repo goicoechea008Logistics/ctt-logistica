@@ -202,6 +202,8 @@
     dom.subjectBannerImg = document.getElementById('subjectBannerImg');
     dom.subjectBannerAcadBadge = document.getElementById('subjectBannerAcadBadge');
     dom.subjectBannerCounters = document.getElementById('subjectBannerCounters');
+    dom.subjectBannerDocente = document.getElementById('subjectBannerDocente');
+    dom.subjectBannerDocenteText = document.getElementById('subjectBannerDocenteText');
     dom.subjectBannerTitle = document.getElementById('subjectBannerTitle');
     dom.subjectBannerDesc = document.getElementById('subjectBannerDesc');
 
@@ -304,6 +306,22 @@
   function formatDisplayFileName(rawName) {
     const cleaned = cleanText(rawName);
     return cleaned.replace(/_[0-9a-fA-F]{32}(\.[a-zA-Z0-9]+)$/, '$1');
+  }
+
+  /**
+   * Formatea el campo `docente` de materias-config.json.
+   * Devuelve null si está vacío; o { prefix: 'Docente:' | 'Docentes:', name } si tiene contenido.
+   */
+  function formatDocenteInfo(rawDocente) {
+    const cleaned = Array.isArray(rawDocente)
+      ? rawDocente.map((d) => cleanText(d)).filter(Boolean).join(', ')
+      : cleanText(rawDocente);
+    if (!cleaned) return null;
+    const isPlural = /(,|\/|;|\s+y\s+)/i.test(cleaned);
+    return {
+      prefix: isPlural ? 'Docentes:' : 'Docente:',
+      name: cleaned,
+    };
   }
 
   function formatDate(isoString) {
@@ -495,18 +513,26 @@
 
     if (!configData || !Array.isArray(configData.materias)) return;
 
+    // Pasada 1: Indexar prioritariamente folderName y aliases de todas las materias
     for (const item of configData.materias) {
-      const candidates = [
+      const primaryCandidates = [
         item.folderName,
         ...(Array.isArray(item.aliases) ? item.aliases : []),
-        item.displayName,
       ].filter(Boolean);
 
-      for (const candidate of candidates) {
+      for (const candidate of primaryCandidates) {
         const key = normalizeMatchKey(candidate);
         if (key && !state.materiaLookup.has(key)) {
           state.materiaLookup.set(key, item);
         }
+      }
+    }
+
+    // Pasada 2: Indexar displayName como respaldo sin pisar folderName ni aliases existentes
+    for (const item of configData.materias) {
+      const key = normalizeMatchKey(item.displayName);
+      if (key && !state.materiaLookup.has(key)) {
+        state.materiaLookup.set(key, item);
       }
     }
   }
@@ -531,10 +557,12 @@
           displayName = cleanText(matched.displayName || rawFolderName);
           const academic = getAcademicMeta(matched.anio ?? 'general', matched.semestres);
           const slug = matched.slug || slugify(displayName);
+          const docente = cleanText(matched.docente || '');
           const allNames = [
             matched.folderName,
             matched.displayName,
             rawFolderName,
+            docente,
             ...(matched.aliases || []),
           ].filter(Boolean);
           aliasSearchTokens = normalizeForSearch(allNames.join(' '));
@@ -542,6 +570,7 @@
           subjectMeta = {
             slug,
             displayName,
+            docente,
             description: matched.description || 'Material de estudio, apuntes y bibliografía de la asignatura.',
             bannerImage: matched.bannerImage || '',
             bannerTheme: matched.bannerTheme || '',
@@ -557,6 +586,7 @@
           subjectMeta = {
             slug,
             displayName: rawFolderName,
+            docente: '',
             description: 'Material de estudio y recursos disponibles en el repositorio académico.',
             bannerImage: 'assets/banners/libros-recursos.jpg',
             bannerTheme: '',
@@ -592,6 +622,7 @@
         displayName,
         cleanName: displayName,
         cleanPath: displayPath,
+        docente: subjectMeta.docente || '',
         description: subjectMeta.description,
         bannerImage: subjectMeta.bannerImage,
         accentColor: subjectMeta.accentColor,
@@ -1533,6 +1564,17 @@
           ? `<img src="${escapeHtml(subj.bannerImage)}" alt="" class="banner-bg-img" loading="lazy" onerror="this.remove()" />`
           : '';
 
+        const docenteInfo = formatDocenteInfo(subj.docente);
+        const docenteHtml = docenteInfo
+          ? `<div class="subject-card-docente" title="${escapeHtml(docenteInfo.prefix)} ${escapeHtml(docenteInfo.name)}">
+               <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+                 <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                 <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+               </svg>
+               <span>${escapeHtml(docenteInfo.prefix)} ${highlightMatch(docenteInfo.name, searchHighlightQuery)}</span>
+             </div>`
+          : '';
+
         return `
           <article
             class="subject-card"
@@ -1559,6 +1601,7 @@
             <div class="subject-card-body">
               <div>
                 <h3 class="subject-card-title">${highlightMatch(subj.cleanName, searchHighlightQuery)}</h3>
+                ${docenteHtml}
                 <p class="subject-card-desc">${escapeHtml(subj.description)}</p>
               </div>
               <div class="subject-card-footer">
@@ -1819,6 +1862,16 @@
       dom.subjectBannerAcadBadge.textContent = subjectFolder.academic.badgeLabel;
       const subCount = subjectFolder.totalSubfoldersCount || subjectFolder.subfolders.length;
       dom.subjectBannerCounters.textContent = `${subCount} ${subCount === 1 ? 'subcarpeta' : 'subcarpetas'} · ${subjectFolder.fileCount} ${subjectFolder.fileCount === 1 ? 'archivo' : 'archivos'}`;
+
+      const docenteInfo = formatDocenteInfo(subjectFolder.docente);
+      if (docenteInfo && dom.subjectBannerDocente && dom.subjectBannerDocenteText) {
+        dom.subjectBannerDocenteText.innerHTML = `<strong>${escapeHtml(docenteInfo.prefix)}</strong> ${escapeHtml(docenteInfo.name)}`;
+        dom.subjectBannerDocente.classList.remove('hidden');
+      } else if (dom.subjectBannerDocente) {
+        dom.subjectBannerDocente.classList.add('hidden');
+        if (dom.subjectBannerDocenteText) dom.subjectBannerDocenteText.textContent = '';
+      }
+
       dom.subjectBannerTitle.textContent = isAtSubjectRoot
         ? subjectFolder.cleanName
         : `${subjectFolder.cleanName} — ${activeFolder.cleanName}`;
