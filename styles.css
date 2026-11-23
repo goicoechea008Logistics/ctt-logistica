@@ -302,9 +302,52 @@ a {
   color: var(--text-muted);
 }
 
+/* Separador y Logo Institucional ANEP | UTU en la barra superior */
+.header-brand-divider {
+  width: 1px;
+  height: 28px;
+  background-color: var(--border-color);
+  flex-shrink: 0;
+  margin: 0 2px;
+}
+
+.header-institution-badge {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(30, 91, 198, 0.2);
+  background-color: #1e5bc6;
+  transition: opacity 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.header-institution-badge:hover {
+  opacity: 0.94;
+  box-shadow: 0 4px 12px rgba(30, 91, 198, 0.22);
+  border-color: rgba(30, 91, 198, 0.42);
+}
+
+[data-theme="dark"] .header-institution-badge {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+[data-theme="dark"] .header-institution-badge:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+
+.header-institution-logo {
+  height: 34px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
 /* Search Bar + Mode Selector (Título | Contenido) */
 .topbar-search {
   flex: 1;
+  min-width: 180px;
   max-width: 680px;
 }
 
@@ -3004,6 +3047,57 @@ select:focus-visible {
   color: var(--text-muted);
 }
 
+/* Versión compacta del logo institucional en pie de página para pantallas < 1180px */
+.footer-institution-wrap {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.footer-institution-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 7px;
+  overflow: hidden;
+  border: 1px solid rgba(30, 91, 198, 0.2);
+  background-color: #1e5bc6;
+  transition: opacity 0.18s ease, box-shadow 0.18s ease;
+}
+
+.footer-institution-badge:hover {
+  opacity: 0.94;
+  box-shadow: 0 3px 10px rgba(30, 91, 198, 0.2);
+}
+
+[data-theme="dark"] .footer-institution-badge {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.footer-institution-logo {
+  height: 28px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+@media (max-width: 1280px) {
+  .header-institution-logo {
+    height: 30px;
+  }
+}
+
+@media (max-width: 1180px) {
+  .header-brand-divider,
+  .header-institution-badge {
+    display: none;
+  }
+
+  .footer-institution-wrap {
+    display: flex;
+  }
+}
+
 .doc-footer-inner {
   display: flex;
   align-items: center;
@@ -3259,4 +3353,1166 @@ select:focus-visible {
   font-size: 0.76rem;
   font-weight: 600;
   color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Sección: Visitas Técnicas (#visitas-tecnicas y #visita/<slug>)
+   ========================================================================== */
+
+/* Banner Principal de Generación en #visitas-tecnicas con Foto Grupal */
+.visitas-gen-banner {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  min-height: 400px;
+  padding: 20px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #0a1222;
+  background-size: cover;
+  background-position: center 46%;
+  background-repeat: no-repeat;
+  color: #ffffff;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  margin-bottom: 18px;
+}
+
+.visitas-gen-banner-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 46%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.visitas-gen-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 18, 34, 0.62) 0%,
+    rgba(10, 18, 34, 0.14) 24%,
+    rgba(10, 18, 34, 0.08) 56%,
+    rgba(10, 18, 34, 0.68) 78%,
+    rgba(10, 18, 34, 0.92) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+.visitas-gen-banner-top,
+.visitas-gen-banner-bottom,
+.visitas-gen-banner-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+}
+
+.visitas-gen-banner-bottom {
+  max-width: 820px;
+}
+
+.visitas-gen-banner-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+}
+
+.visitas-gen-kicker-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(2, 132, 199, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.visitas-gen-period-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(10, 18, 34, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #f8fafc;
+  font-size: 0.76rem;
+  font-weight: 700;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.visitas-gen-banner-title {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.18;
+  margin: 0 0 6px 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.65);
+}
+
+.visitas-gen-banner-desc {
+  font-size: 0.96rem;
+  line-height: 1.56;
+  color: #f1f5f9;
+  max-width: 720px;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.65);
+}
+
+/* Barra / Selector de Generación en #visitas-tecnicas */
+.visitas-gen-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-xs);
+  margin-bottom: 20px;
+}
+
+.visitas-gen-selector-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.visitas-gen-label {
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.visitas-gen-pills {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.visitas-gen-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-subtle);
+  color: var(--text-secondary);
+  font-size: 0.81rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.visitas-gen-btn:hover {
+  border-color: var(--brand-accent);
+  color: var(--text-primary);
+}
+
+.visitas-gen-btn.active {
+  background-color: var(--brand-primary);
+  border-color: var(--brand-primary);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+
+.visitas-gen-btn-period {
+  font-weight: 600;
+  opacity: 0.88;
+}
+
+.visitas-gen-btn-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 7px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(255, 255, 255, 0.22);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.visitas-gen-btn:not(.active) .visitas-gen-btn-count {
+  background-color: var(--bg-surface);
+  color: var(--text-muted);
+}
+
+.visitas-gen-summary {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Tarjeta destacada de Visitas Técnicas en #inicio con Foto Grupal de Fondo */
+.semester-journey-card.featured-visitas-gen {
+  position: relative;
+  overflow: hidden;
+  background-color: #0b162c;
+  background-size: cover;
+  background-position: center 38%;
+  background-repeat: no-repeat;
+  border-color: rgba(56, 189, 248, 0.35);
+  color: #ffffff;
+}
+
+.semester-journey-card.featured-visitas-gen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(11, 22, 44, 0.84) 0%,
+    rgba(11, 22, 44, 0.68) 55%,
+    rgba(11, 22, 44, 0.48) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.semester-journey-card.featured-visitas-gen > * {
+  position: relative;
+  z-index: 2;
+}
+
+.semester-journey-card.featured-visitas-gen .journey-card-title {
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+.semester-journey-card.featured-visitas-gen .journey-card-desc {
+  color: #e2e8f0;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.45);
+}
+
+.semester-journey-card.featured-visitas-gen .journey-card-footer {
+  border-top-color: rgba(255, 255, 255, 0.18);
+}
+
+.semester-journey-card.featured-visitas-gen .journey-count-chip {
+  background-color: rgba(11, 22, 44, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #f8fafc;
+  backdrop-filter: blur(4px);
+}
+
+.semester-journey-card.featured-visitas-gen .journey-cta-text {
+  color: #38bdf8;
+}
+
+@media (max-width: 720px) {
+  .visitas-gen-banner {
+    padding: 16px 18px 20px;
+    min-height: 300px;
+  }
+
+  .visitas-gen-banner-title {
+    font-size: 1.45rem;
+  }
+}
+
+.visitas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 920px) {
+  .visitas-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.visita-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.visita-card:hover {
+  border-color: var(--visita-accent, var(--brand-accent));
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.visita-card:hover .banner-bg-img {
+  transform: scale(1.04);
+}
+
+.visita-card-cover {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  overflow: hidden;
+  background-color: #0f172a;
+  background-image:
+    radial-gradient(circle at 82% 24%, color-mix(in srgb, var(--visita-accent, #0ea5e9) 48%, transparent) 0%, transparent 58%),
+    linear-gradient(135deg, #091020 0%, #13213c 54%, color-mix(in srgb, var(--visita-accent, #0ea5e9) 55%, #0f172a) 100%);
+  border-bottom: 3px solid var(--visita-accent, #0ea5e9);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px 16px;
+}
+
+.visita-card-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.visita-cover-fallback-art {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.35);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.visita-cover-fallback-art span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(226, 232, 240, 0.45);
+}
+
+.visita-card-cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 12, 26, 0.65) 0%,
+    rgba(11, 19, 38, 0.25) 48%,
+    rgba(7, 12, 26, 0.86) 100%
+  );
+  z-index: 3;
+  pointer-events: none;
+}
+
+.visita-cover-top,
+.visita-cover-bottom {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+  width: 100%;
+}
+
+.visita-num-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 11px;
+  border-radius: var(--radius-pill);
+  background-color: var(--visita-accent, #0ea5e9);
+  color: #ffffff;
+  font-size: 0.73rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.visita-sem-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  color: #f8fafc;
+  font-size: 0.72rem;
+  font-weight: 700;
+  backdrop-filter: blur(6px);
+}
+
+.visita-place-overlay {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #e2e8f0;
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.visita-place-overlay span,
+.visita-place-text {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.visita-place-overlay svg {
+  color: #38bdf8;
+  flex-shrink: 0;
+}
+
+.visita-place-link {
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 2px 4px;
+  margin: -2px -4px;
+  transition: color 0.16s ease, background-color 0.16s ease;
+}
+
+.visita-place-link .visita-place-ext-icon {
+  opacity: 0.72;
+  color: #93c5fd;
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+
+.visita-place-link:hover,
+.visita-place-link:focus-visible {
+  color: #ffffff;
+  background-color: rgba(15, 23, 42, 0.45);
+}
+
+.visita-place-link:hover .visita-place-text,
+.visita-place-link:focus-visible .visita-place-text {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: rgba(56, 189, 248, 0.85);
+}
+
+.visita-place-link:hover .visita-place-ext-icon,
+.visita-place-link:focus-visible .visita-place-ext-icon {
+  opacity: 1;
+  color: #38bdf8;
+  transform: translate(1px, -1px);
+}
+
+.visita-card-body {
+  flex: 1;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.visita-date-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.77rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.visita-date-row svg {
+  color: var(--brand-primary);
+  flex-shrink: 0;
+}
+
+.visita-card-title {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.visita-card-resumen {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.54;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.visita-related-chips {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.visita-related-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 5px;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.visita-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 13px;
+  border-top: 1px solid var(--border-color);
+}
+
+.visita-status-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.visita-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 6px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.visita-status-pill.status-ready {
+  background-color: var(--cat-excel-bg);
+  color: var(--cat-excel-text);
+  border: 1px solid var(--cat-excel-border);
+}
+
+.visita-status-pill.status-pending {
+  background-color: var(--bg-subtle);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+}
+
+.visita-photos-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background-color: var(--bg-subtle);
+  color: var(--text-secondary);
+  font-size: 0.73rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.visita-cta-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Vista Detalle de Visita Técnica (#visita/<slug>)
+   ========================================================================== */
+.visita-detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.visita-detail-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  padding: 34px 36px;
+  background-color: #0f172a;
+  background-image:
+    radial-gradient(circle at 85% 20%, color-mix(in srgb, var(--visita-accent, #0ea5e9) 45%, transparent) 0%, transparent 55%),
+    linear-gradient(135deg, #090f1d 0%, #111c33 55%, color-mix(in srgb, var(--visita-accent, #0ea5e9) 55%, #0f172a) 100%);
+  color: #ffffff;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.visita-detail-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.visita-detail-hero-content {
+  position: relative;
+  z-index: 4;
+  max-width: 860px;
+}
+
+.visita-detail-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.visita-detail-meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #e2e8f0;
+  font-size: 0.76rem;
+  font-weight: 600;
+  backdrop-filter: blur(6px);
+}
+
+.visita-detail-title {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 1.95rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.visita-detail-resumen {
+  font-size: 0.98rem;
+  line-height: 1.64;
+  color: #cbd5e1;
+  margin-bottom: 18px;
+}
+
+.visita-detail-related {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.visita-detail-related-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #94a3b8;
+  margin-right: 4px;
+}
+
+.visita-related-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 11px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #f8fafc;
+  font-size: 0.77rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.visita-related-link:hover {
+  background-color: var(--visita-accent, #0ea5e9);
+  border-color: transparent;
+  color: #ffffff;
+}
+
+/* Tarjeta de Informe Técnico en Detalle de Visita */
+.visita-report-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 22px 24px;
+  border-radius: var(--radius-lg);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.visita-report-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  flex: 1;
+}
+
+.visita-report-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.visita-report-info {
+  min-width: 0;
+}
+
+.visita-report-kicker {
+  font-size: 0.73rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--brand-primary);
+  margin-bottom: 3px;
+}
+
+.visita-report-title {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+.visita-report-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.visita-report-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Enlace de ubicación en el hero de detalle de visita */
+.visita-detail-place-link {
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+}
+
+.visita-detail-place-link:hover,
+.visita-detail-place-link:focus-visible {
+  background-color: rgba(2, 132, 199, 0.88);
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #ffffff;
+}
+
+/* Bloque Interactivo de Ubicación en Google Maps (#visita/<slug>) */
+.visita-map-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px 22px;
+  border-radius: var(--radius-lg);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.visita-map-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.visita-map-title-group {
+  min-width: 0;
+  flex: 1;
+}
+
+.visita-map-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+
+.visita-map-title-row svg {
+  color: var(--brand-primary);
+  flex-shrink: 0;
+}
+
+.visita-map-title {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 1.04rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.visita-map-address {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.visita-map-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.visita-map-mode-switch {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  border-radius: var(--radius-md);
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  gap: 2px;
+}
+
+.visita-map-mode-btn {
+  padding: 5px 12px;
+  border: none;
+  border-radius: calc(var(--radius-md) - 2px);
+  background-color: transparent;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.visita-map-mode-btn:hover {
+  color: var(--text-primary);
+}
+
+.visita-map-mode-btn.active {
+  background-color: var(--brand-primary);
+  color: #ffffff;
+  box-shadow: 0 1px 4px rgba(37, 99, 235, 0.28);
+}
+
+.visita-map-open-btn {
+  font-size: 0.8rem;
+  padding: 7px 13px;
+}
+
+.visita-map-frame-wrap {
+  width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-subtle);
+  line-height: 0;
+}
+
+.visita-map-iframe {
+  width: 100%;
+  height: 320px;
+  border: 0;
+  display: block;
+}
+
+/* Galería Fotográfica en Detalle de Visita */
+.visita-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.visita-photo-item {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.visita-photo-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--brand-accent);
+}
+
+.visita-photo-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.visita-photo-item:hover img {
+  transform: scale(1.06);
+}
+
+.visita-photo-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px 10px 8px;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, transparent 100%);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.visita-gallery-empty {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 22px 24px;
+  border-radius: var(--radius-md);
+  background-color: var(--bg-surface);
+  border: 1px dashed var(--border-strong);
+  color: var(--text-secondary);
+}
+
+.visita-gallery-empty-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background-color: var(--bg-subtle);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.visita-gallery-empty-title {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.visita-gallery-empty-desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   Lightbox Accesible para Galería de Visitas Técnicas
+   ========================================================================== */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 260;
+  background-color: rgba(2, 6, 23, 0.92);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.16s ease;
+}
+
+.lightbox-topbar {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 5;
+}
+
+.lightbox-counter {
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #f8fafc;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.lightbox-close-btn {
+  background-color: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.lightbox-close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.lightbox-stage {
+  max-width: 90vw;
+  max-height: 82vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+}
+
+.lightbox-img {
+  max-width: 88vw;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65);
+}
+
+.lightbox-caption {
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  max-width: 720px;
+}
+
+.lightbox-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.15s ease;
+}
+
+.lightbox-nav-btn:hover {
+  background-color: var(--brand-primary);
+  border-color: var(--brand-primary);
+}
+
+.lightbox-prev {
+  left: 20px;
+}
+
+.lightbox-next {
+  right: 20px;
+}
+
+@media (max-width: 720px) {
+  .visita-detail-hero {
+    padding: 22px 20px;
+  }
+
+  .visita-detail-title {
+    font-size: 1.45rem;
+  }
+
+  .visita-report-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .visita-report-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .visita-map-card {
+    padding: 16px;
+  }
+
+  .visita-map-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .visita-map-iframe {
+    height: 260px;
+  }
+
+  .lightbox-prev {
+    left: 10px;
+  }
+
+  .lightbox-next {
+    right: 10px;
+  }
 }

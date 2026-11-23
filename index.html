@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=1.4" />
+  <link rel="stylesheet" href="styles.css?v=2.3" />
 </head>
 <body>
   <!-- Top Navigation Bar -->
@@ -33,6 +33,23 @@
           <span class="brand-title">CTT Logística</span>
           <span class="brand-subtitle">Repositorio Académico</span>
         </div>
+      </a>
+
+      <span class="header-brand-divider" aria-hidden="true"></span>
+
+      <a
+        class="header-institution-badge"
+        href="https://www.utu.edu.uy/"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="ANEP · UTU — Dirección General de Educación Técnico Profesional"
+        aria-label="Sitio oficial de UTU - ANEP"
+      >
+        <img
+          src="assets/logo-anep-utu.png"
+          alt="ANEP · UTU — Dirección General de Educación Técnico Profesional"
+          class="header-institution-logo"
+        />
       </a>
     </div>
 
@@ -529,6 +546,38 @@
           </div>
         </section>
 
+        <!-- Visitas Técnicas Grid Section (#visitas-tecnicas) -->
+        <section id="visitasListSection" class="content-section hidden" aria-label="Listado de visitas técnicas">
+          <!-- Portada de Generación con Foto Grupal -->
+          <div id="visitasHeroBanner" class="visitas-gen-banner"></div>
+
+          <!-- Encabezado y Selector de Generación -->
+          <div id="visitasGeneracionBar" class="visitas-gen-bar"></div>
+
+          <div id="visitasGrid" class="visitas-grid">
+            <!-- 5 numbered Visita Técnica cards rendered dynamically -->
+          </div>
+
+          <div id="unmatchedVisitasWrap" class="unmatched-visitas-wrap hidden">
+            <div class="section-header" style="margin-top: 28px;">
+              <h2 class="section-title">
+                <svg viewBox="0 0 24 24" width="19" height="19" stroke="currentColor" stroke-width="2" fill="none">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+                <span>Otros informes disponibles</span>
+              </h2>
+              <span id="unmatchedVisitasCount" class="section-count">0 archivos</span>
+            </div>
+            <div id="unmatchedVisitasGrid" class="files-grid"></div>
+          </div>
+        </section>
+
+        <!-- Visita Técnica Detail Section (#visita/<slug>) -->
+        <section id="visitaDetailSection" class="visita-detail-section hidden" aria-label="Detalle de visita técnica">
+          <!-- Populated dynamically with visit header, technical report card & photo gallery -->
+        </section>
+
         <!-- Empty State -->
         <div id="emptyState" class="empty-state hidden">
           <div class="empty-state-icon" id="emptyStateIcon">
@@ -548,6 +597,24 @@
 
       <!-- Pie de página de Control Documental y Autoría -->
       <footer id="docControlFooter" class="doc-control-footer" aria-label="Información de control documental y derechos de autor del portal">
+        <div class="footer-institution-wrap">
+          <a
+            class="footer-institution-badge"
+            href="https://www.utu.edu.uy/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="ANEP · UTU — Dirección General de Educación Técnico Profesional"
+            aria-label="Sitio oficial de UTU - ANEP"
+          >
+            <img
+              src="assets/logo-anep-utu.png"
+              alt="ANEP · UTU — Dirección General de Educación Técnico Profesional"
+              class="footer-institution-logo"
+              loading="lazy"
+            />
+          </a>
+        </div>
+
         <div class="doc-footer-inner">
           <span id="footerVersionText" class="doc-footer-item doc-footer-brand">CTT Logística · Portal v1.1</span>
           <span id="footerSyncDateWrap" class="doc-footer-wrap hidden">
@@ -802,6 +869,38 @@
     </div>
   </div>
 
-  <script src="app.js?v=1.4"></script>
+  <!-- Lightbox Modal for Visitas Técnicas Photo Galleries -->
+  <div id="galleryLightbox" class="lightbox-overlay hidden" role="dialog" aria-modal="true" aria-label="Visor de galería fotográfica">
+    <div class="lightbox-topbar">
+      <span id="lightboxCounter" class="lightbox-counter">1 / 1</span>
+      <button id="lightboxCloseBtn" class="icon-btn lightbox-close-btn" type="button" aria-label="Cerrar galería (Esc)" title="Cerrar (Esc)">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.2" fill="none" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <button id="lightboxPrevBtn" class="lightbox-nav-btn lightbox-prev" type="button" aria-label="Foto anterior" title="Anterior (←)">
+      <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="2.4" fill="none" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+
+    <div class="lightbox-stage" id="lightboxStage">
+      <figure class="lightbox-figure">
+        <img id="lightboxImg" class="lightbox-img" src="" alt="" />
+        <figcaption id="lightboxCaption" class="lightbox-caption"></figcaption>
+      </figure>
+    </div>
+
+    <button id="lightboxNextBtn" class="lightbox-nav-btn lightbox-next" type="button" aria-label="Foto siguiente" title="Siguiente (→)">
+      <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="2.4" fill="none" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+
+  <script src="app.js?v=2.3"></script>
 </body>
 </html>

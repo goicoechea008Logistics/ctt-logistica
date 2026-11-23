@@ -1,0 +1,418 @@
+{
+  "generaciones": [
+    {
+      "id": "ctt-egresados-2026",
+      "nombre": "CTT Egresados 2026",
+      "driveSubfolder": "CTT Egresados 2026",
+      "periodo": "2025 – 2026",
+      "portada": "assets/visitas/ctt-egresados-2026/portada-generacion.jpg",
+      "descripcion": "Visitas técnicas realizadas por la generación egresada en 2026 de la Tecnicatura en Logística.",
+      "visitas": [
+        {
+          "slug": "2026-lacc-correo-uruguayo",
+          "numero": 1,
+          "titulo": "LACC (Latin American Cargo City) y Correo Uruguayo",
+          "lugar": "Aeropuerto Internacional de Carrasco y Planta Logística, Canelones",
+          "mapsQuery": "LACC - Latin America Cargo City, Cno Carrasco, Aeropuerto de Carrasco, Ciudad de la Costa, Uruguay",
+          "mapsUrl": "https://www.google.com/maps/search/?api=1&query=LACC+Latin+America+Cargo+City+Aeropuerto+de+Carrasco+Uruguay",
+          "fecha": "",
+          "fechaTexto": "1.° Semestre · 2025",
+          "semestre": "1.° Semestre",
+          "materiasRelacionadas": [
+            "Introducción a la Logística",
+            "Transporte Logístico 1"
+          ],
+          "resumen": "Recorrida por el hub de carga aérea Latin American Cargo City (LACC) y la operativa de Correo Uruguayo: recepción, clasificación, almacenamiento, control aduanero y distribución de cargas y paquetería.",
+          "portada": "assets/visitas/ctt-egresados-2026/visita-1/portada.jpg",
+          "informeMatch": "LACC",
+          "galeria": [
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-1/portada.jpg",
+              "caption": "LACC y Correo Uruguayo — Portada"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-1/13730ce0-8704-483a-bebb-f46ebbe44699.jpg",
+              "caption": "LACC y Correo Uruguayo — Foto 1"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-1/17779594-2f1d-4938-b39e-4cdb119c9245.jpg",
+              "caption": "LACC y Correo Uruguayo — Foto 2"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-1/316f3bb7-9f98-4d69-be25-ab67cf9dc296.jpg",
+              "caption": "LACC y Correo Uruguayo — Foto 3"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-1/806adbd6-b742-4891-b964-ad1aafc2ecb0.jpg",
+              "caption": "LACC y Correo Uruguayo — Foto 4"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-1/85a995e7-273b-43d6-8f31-8092873b4ba3.jpg",
+              "caption": "LACC y Correo Uruguayo — Foto 5"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-1/9db03bf8-8488-4e0c-a0b1-de114c0f61a9.jpg",
+              "caption": "LACC y Correo Uruguayo — Foto 6"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-1/bb535a2e-a7cb-468b-8c44-9ef9c7f28261.jpg",
+              "caption": "LACC y Correo Uruguayo — Foto 7"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-1/ce60908a-47de-42e1-b077-3ad0106fc84a.jpg",
+              "caption": "LACC y Correo Uruguayo — Foto 8"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-1/dae6e611-7512-40d3-8909-02aad0e6c2f0.jpg",
+              "caption": "LACC y Correo Uruguayo — Foto 9"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-1/e0a9e30a-9d0f-483c-b2f6-b3fed81e4400.jpg",
+              "caption": "LACC y Correo Uruguayo — Foto 10"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-1/f9b4ae22-9e22-4698-b0f2-cc6296942fac.jpg",
+              "caption": "LACC y Correo Uruguayo — Foto 11"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-1/fbccaea7-1b81-4529-a9f8-bd085bb20e4f.jpg",
+              "caption": "LACC y Correo Uruguayo — Foto 12"
+            }
+          ]
+        },
+        {
+          "slug": "2026-megalabs-selenin",
+          "numero": 2,
+          "titulo": "Megalabs / Selenin — Logística Farmacéutica",
+          "lugar": "Parque de las Ciencias, Colonia Nicolich, Canelones",
+          "mapsQuery": "Parque de las Ciencias, Ruta 101, Canelones, Uruguay",
+          "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Parque+de+las+Ciencias+Ruta+101+Canelones+Uruguay",
+          "fecha": "2025-09-04",
+          "fechaTexto": "4 de septiembre de 2025",
+          "semestre": "2.° Semestre",
+          "materiasRelacionadas": [
+            "Legislación Aplicada",
+            "Transporte Logístico 2"
+          ],
+          "resumen": "Recorrida por la zona franca Parque de las Ciencias enfocada en las operaciones logísticas farmacéuticas de Megalabs y Selenin: control aduanero en recepción, depósito automatizado, trazabilidad por lote y clasificación de áreas según estándares de esterilidad.",
+          "portada": "assets/visitas/ctt-egresados-2026/visita-2/portada.jpg",
+          "informeMatch": "Megalabs",
+          "galeria": [
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-2/portada.jpg",
+              "caption": "Megalabs / Selenin — Portada"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-2/deposito-megalabs-2.jpg",
+              "caption": "Depósito Megalabs 2"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-2/deposito-megalabs-3.jpg",
+              "caption": "Depósito Megalabs 3"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-2/deposito-megalabs-6.jpg",
+              "caption": "Depósito Megalabs 6"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-2/deposito-megalabs-13.jpg",
+              "caption": "Depósito Megalabs 13"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-2/deposito-selenin-1.jpg",
+              "caption": "Depósito Selenin 1"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-2/deposito-selenin-2.jpg",
+              "caption": "Depósito Selenin 2"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-2/deposito-selenin-7.jpg",
+              "caption": "Depósito Selenin 7"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-2/deposito-selenin-9.jpg",
+              "caption": "Depósito Selenin 9"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-2/deposito-selenin-12.jpg",
+              "caption": "Depósito Selenin 12"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-2/deposito-selenin-13.jpg",
+              "caption": "Depósito Selenin 13"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-2/deposito-selenin-14.jpg",
+              "caption": "Depósito Selenin 14"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-2/deposito-selenin-20.jpg",
+              "caption": "Depósito Selenin 20"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-2/deposito-selenin-22.jpg",
+              "caption": "Depósito Selenin 22"
+            }
+          ]
+        },
+        {
+          "slug": "2026-chr-group-tgm",
+          "numero": 3,
+          "titulo": "CHR Group y Terminal de Graneles de Montevideo (TGM)",
+          "lugar": "Ciudad Vieja y Puerto de Montevideo",
+          "mapsQuery": "TGM OBRINEL, Terminal Granelera Montevideo, Montevideo, Uruguay",
+          "mapsUrl": "https://www.google.com/maps/search/?api=1&query=TGM+OBRINEL+Terminal+Granelera+Montevideo+Uruguay",
+          "fecha": "2026-04-29",
+          "fechaTexto": "29 de abril de 2026",
+          "semestre": "3.° Semestre",
+          "materiasRelacionadas": [
+            "Operaciones de Terminales de Carga",
+            "Comercio Exterior"
+          ],
+          "resumen": "Visita a la oficina central de la agencia marítima Christophersen (CHR Group) y a la Terminal de Graneles de Montevideo (TGM): gestión integral de buques, documentación de exportación (Bill of Lading, cut-off) y operativa portuaria de acopio y embarque de granos.",
+          "portada": "assets/visitas/ctt-egresados-2026/visita-3/portada.jpg",
+          "informeMatch": "CHR GROUP",
+          "galeria": [
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-3/portada.jpg",
+              "caption": "CHR Group y TGM — Portada"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-3/chr-group-1.jpg",
+              "caption": "CHR Group 1"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-3/chr-group-2.jpg",
+              "caption": "CHR Group 2"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-3/chr-group-4.jpg",
+              "caption": "CHR Group 4"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-3/deposito-planir-1.jpg",
+              "caption": "Depósito Planir 1"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-3/deposito-planir-2.jpg",
+              "caption": "Depósito Planir 2"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-3/terminal-tgm-8.jpg",
+              "caption": "Terminal TGM 8"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-3/terminal-tgm-16.jpg",
+              "caption": "Terminal TGM 16"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-3/terminal-tgm-17.jpg",
+              "caption": "Terminal TGM 17"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-3/terminal-tgm-20.jpg",
+              "caption": "Terminal TGM 20"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-3/terminal-tgm-28.jpg",
+              "caption": "Terminal TGM 28"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-3/terminal-tgm-34.jpg",
+              "caption": "Terminal TGM 34"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-3/terminal-tgm-38.jpg",
+              "caption": "Terminal TGM 38"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-3/terminal-tgm-43.jpg",
+              "caption": "Terminal TGM 43"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-3/terminal-tgm-44.jpg",
+              "caption": "Terminal TGM 44"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-3/terminal-tgm-45.jpg",
+              "caption": "Terminal TGM 45"
+            }
+          ]
+        },
+        {
+          "slug": "2026-uam",
+          "numero": 4,
+          "titulo": "Unidad Agroalimentaria Metropolitana (UAM)",
+          "lugar": "Ruta 5 y Cno. Luis Eduardo Pérez, Montevideo",
+          "mapsQuery": "UAM, Camino Luis Eduardo Pérez 6651, Montevideo, Uruguay",
+          "mapsUrl": "https://www.google.com/maps/search/?api=1&query=UAM+Camino+Luis+Eduardo+Perez+6651+Montevideo+Uruguay",
+          "fecha": "2026-08-28",
+          "fechaTexto": "28 de agosto de 2026",
+          "semestre": "4.° Semestre",
+          "materiasRelacionadas": [
+            "Sistemas de Gestión de Calidad",
+            "Gestión Empresarial Aplicada a la Logística"
+          ],
+          "resumen": "Análisis de la transición del antiguo Mercado Modelo a un complejo agroalimentario de 95 hectáreas: naves elevadas para carga y descarga, Mercado de Frutas y Hortalizas, Mercado Polivalente, cámaras de frío, control bromatológico y gestión de residuos.",
+          "portada": "assets/visitas/ctt-egresados-2026/visita-4/portada.jpg",
+          "informeMatch": "UAM",
+          "galeria": [
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-4/portada.jpg",
+              "caption": "UAM — Portada"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-4/nave-uam-1.jpg",
+              "caption": "Nave UAM 1"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-4/nave-uam-2.jpg",
+              "caption": "Nave UAM 2"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-4/nave-uam-3.jpg",
+              "caption": "Nave UAM 3"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-4/nave-uam-4.jpg",
+              "caption": "Nave UAM 4"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-4/nave-uam-5.jpg",
+              "caption": "Nave UAM 5"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-4/nave-uam-6.jpg",
+              "caption": "Nave UAM 6"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-4/nave-uam-7.jpg",
+              "caption": "Nave UAM 7"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-4/nave-uam-8.jpg",
+              "caption": "Nave UAM 8"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-4/nave-uam-9.jpg",
+              "caption": "Nave UAM 9"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-4/nave-uam-10.jpg",
+              "caption": "Nave UAM 10"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-4/nave-uam-11.jpg",
+              "caption": "Nave UAM 11"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-4/nave-uam-12.jpg",
+              "caption": "Nave UAM 12"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-4/nave-uam-13.jpg",
+              "caption": "Nave UAM 13"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-4/nave-uam-14.jpg",
+              "caption": "Nave UAM 14"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-4/nave-uam-15.jpg",
+              "caption": "Nave UAM 15"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-4/nave-uam-16.jpg",
+              "caption": "Nave UAM 16"
+            }
+          ]
+        },
+        {
+          "slug": "2026-upm-terminal-portuaria",
+          "numero": 5,
+          "titulo": "UPM — Terminal Portuaria de Celulosa",
+          "lugar": "Puerto de Montevideo",
+          "mapsQuery": "Sede portuaria de UPM Forestal, Colombia, Montevideo, Uruguay",
+          "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Sede+portuaria+de+UPM+Forestal+Montevideo+Uruguay",
+          "fecha": "2026-09-11",
+          "fechaTexto": "11 de septiembre de 2026",
+          "semestre": "4.° Semestre",
+          "materiasRelacionadas": [
+            "Planificación Estratégica",
+            "Sistemas de Gestión de Calidad"
+          ],
+          "resumen": "Estudio del modelo logístico multimodal y de 'Cadena Caliente' en la terminal portuaria especializada de UPM: transporte ferroviario (consorcio DBC), centro de control centralizado, trazabilidad con RFID y precintos electrónicos, protocolos de inocuidad y estiba portuaria con SAATCO.",
+          "portada": "assets/visitas/ctt-egresados-2026/visita-5/portada.jpg",
+          "informeMatch": "UPM",
+          "galeria": [
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-5/portada.jpg",
+              "caption": "UPM Terminal Portuaria — Portada"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-5/nave-upm-1.jpg",
+              "caption": "Nave UPM 1"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-5/nave-upm-2.jpg",
+              "caption": "Nave UPM 2"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-5/nave-upm-3.jpg",
+              "caption": "Nave UPM 3"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-5/nave-upm-4.jpg",
+              "caption": "Nave UPM 4"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-5/nave-upm-5.jpg",
+              "caption": "Nave UPM 5"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-5/nave-upm-6.jpg",
+              "caption": "Nave UPM 6"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-5/nave-upm-7.jpg",
+              "caption": "Nave UPM 7"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-5/nave-upm-8.jpg",
+              "caption": "Nave UPM 8"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-5/nave-upm-9.jpg",
+              "caption": "Nave UPM 9"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-5/nave-upm-10.jpg",
+              "caption": "Nave UPM 10"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-5/nave-upm-11.jpg",
+              "caption": "Nave UPM 11"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-5/nave-upm-12.jpg",
+              "caption": "Nave UPM 12"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-5/nave-upm-13.jpg",
+              "caption": "Nave UPM 13"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-5/nave-upm-14.jpg",
+              "caption": "Nave UPM 14"
+            },
+            {
+              "src": "assets/visitas/ctt-egresados-2026/visita-5/nave-upm-15.jpg",
+              "caption": "Nave UPM 15"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

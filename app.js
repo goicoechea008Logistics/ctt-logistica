@@ -86,10 +86,120 @@
     },
   };
 
+  // Paleta de acentos para cada Visita Técnica (1 a 5)
+  const VISITA_ACCENTS = ['#0284C7', '#10B981', '#2563EB', '#F59E0B', '#0D9488'];
+
+  // Respaldo integrado por generaciones por si visitas-config.json tarda o falla
+  const DEFAULT_GENERACIONES_CONFIG = [
+    {
+      id: 'ctt-egresados-2026',
+      nombre: 'CTT Egresados 2026',
+      driveSubfolder: 'CTT Egresados 2026',
+      periodo: '2025 – 2026',
+      portada: 'assets/visitas/ctt-egresados-2026/portada-generacion.jpg',
+      descripcion:
+        'Visitas técnicas realizadas por la generación egresada en 2026 de la Tecnicatura en Logística.',
+      visitas: [
+        {
+          slug: '2026-lacc-correo-uruguayo',
+          numero: 1,
+          titulo: 'LACC (Latin American Cargo City) y Correo Uruguayo',
+          lugar: 'Aeropuerto Internacional de Carrasco y Planta Logística, Canelones',
+          mapsQuery:
+            'LACC - Latin America Cargo City, Cno Carrasco, Aeropuerto de Carrasco, Ciudad de la Costa, Uruguay',
+          mapsUrl:
+            'https://www.google.com/maps/search/?api=1&query=LACC+Latin+America+Cargo+City+Aeropuerto+de+Carrasco+Uruguay',
+          fecha: '',
+          fechaTexto: '1.° Semestre · 2025',
+          semestre: '1.° Semestre',
+          materiasRelacionadas: ['Introducción a la Logística', 'Transporte Logístico 1'],
+          resumen:
+            'Recorrida por el hub de carga aérea Latin American Cargo City (LACC) y la operativa de Correo Uruguayo: recepción, clasificación, almacenamiento, control aduanero y distribución de cargas y paquetería.',
+          portada: 'assets/visitas/ctt-egresados-2026/visita-1/portada.jpg',
+          informeMatch: 'LACC',
+          galeria: [],
+        },
+        {
+          slug: '2026-megalabs-selenin',
+          numero: 2,
+          titulo: 'Megalabs / Selenin — Logística Farmacéutica',
+          lugar: 'Parque de las Ciencias, Colonia Nicolich, Canelones',
+          mapsQuery: 'Parque de las Ciencias, Ruta 101, Canelones, Uruguay',
+          mapsUrl:
+            'https://www.google.com/maps/search/?api=1&query=Parque+de+las+Ciencias+Ruta+101+Canelones+Uruguay',
+          fecha: '2025-09-04',
+          fechaTexto: '4 de septiembre de 2025',
+          semestre: '2.° Semestre',
+          materiasRelacionadas: ['Legislación Aplicada', 'Transporte Logístico 2'],
+          resumen:
+            'Recorrida por la zona franca Parque de las Ciencias enfocada en las operaciones logísticas farmacéuticas de Megalabs y Selenin: control aduanero en recepción, depósito automatizado, trazabilidad por lote y clasificación de áreas según estándares de esterilidad.',
+          portada: 'assets/visitas/ctt-egresados-2026/visita-2/portada.jpg',
+          informeMatch: 'Megalabs',
+          galeria: [],
+        },
+        {
+          slug: '2026-chr-group-tgm',
+          numero: 3,
+          titulo: 'CHR Group y Terminal de Graneles de Montevideo (TGM)',
+          lugar: 'Ciudad Vieja y Puerto de Montevideo',
+          mapsQuery: 'TGM OBRINEL, Terminal Granelera Montevideo, Montevideo, Uruguay',
+          mapsUrl:
+            'https://www.google.com/maps/search/?api=1&query=TGM+OBRINEL+Terminal+Granelera+Montevideo+Uruguay',
+          fecha: '2026-04-29',
+          fechaTexto: '29 de abril de 2026',
+          semestre: '3.° Semestre',
+          materiasRelacionadas: ['Operaciones de Terminales de Carga', 'Comercio Exterior'],
+          resumen:
+            'Visita a la oficina central de la agencia marítima Christophersen (CHR Group) y a la Terminal de Graneles de Montevideo (TGM): gestión integral de buques, documentación de exportación (Bill of Lading, cut-off) y operativa portuaria de acopio y embarque de granos.',
+          portada: 'assets/visitas/ctt-egresados-2026/visita-3/portada.jpg',
+          informeMatch: 'CHR GROUP',
+          galeria: [],
+        },
+        {
+          slug: '2026-uam',
+          numero: 4,
+          titulo: 'Unidad Agroalimentaria Metropolitana (UAM)',
+          lugar: 'Ruta 5 y Cno. Luis Eduardo Pérez, Montevideo',
+          mapsQuery: 'UAM, Camino Luis Eduardo Pérez 6651, Montevideo, Uruguay',
+          mapsUrl:
+            'https://www.google.com/maps/search/?api=1&query=UAM+Camino+Luis+Eduardo+Perez+6651+Montevideo+Uruguay',
+          fecha: '2026-08-28',
+          fechaTexto: '28 de agosto de 2026',
+          semestre: '4.° Semestre',
+          materiasRelacionadas: ['Sistemas de Gestión de Calidad', 'Gestión Empresarial Aplicada a la Logística'],
+          resumen:
+            'Análisis de la transición del antiguo Mercado Modelo a un complejo agroalimentario de 95 hectáreas: naves elevadas para carga y descarga, Mercado de Frutas y Hortalizas, Mercado Polivalente, cámaras de frío, control bromatológico y gestión de residuos.',
+          portada: 'assets/visitas/ctt-egresados-2026/visita-4/portada.jpg',
+          informeMatch: 'UAM',
+          galeria: [],
+        },
+        {
+          slug: '2026-upm-terminal-portuaria',
+          numero: 5,
+          titulo: 'UPM — Terminal Portuaria de Celulosa',
+          lugar: 'Puerto de Montevideo',
+          mapsQuery: 'Sede portuaria de UPM Forestal, Colombia, Montevideo, Uruguay',
+          mapsUrl:
+            'https://www.google.com/maps/search/?api=1&query=Sede+portuaria+de+UPM+Forestal+Montevideo+Uruguay',
+          fecha: '2026-09-11',
+          fechaTexto: '11 de septiembre de 2026',
+          semestre: '4.° Semestre',
+          materiasRelacionadas: ['Planificación Estratégica', 'Sistemas de Gestión de Calidad'],
+          resumen:
+            "Estudio del modelo logístico multimodal y de 'Cadena Caliente' en la terminal portuaria especializada de UPM: transporte ferroviario (consorcio DBC), centro de control centralizado, trazabilidad con RFID y precintos electrónicos, protocolos de inocuidad y estiba portuaria con SAATCO.",
+          portada: 'assets/visitas/ctt-egresados-2026/visita-5/portada.jpg',
+          informeMatch: 'UPM',
+          galeria: [],
+        },
+      ],
+    },
+  ];
+
   // --- Estado Global de la Aplicación ---
   const state = {
     catalog: null,
     materiasConfig: null,
+    generacionesConfig: DEFAULT_GENERACIONES_CONFIG,
     contentSearchApiUrl: DEFAULT_CONTENT_SEARCH_API_URL,
     materiaLookup: new Map(),
     subjectsBySlug: new Map(),
@@ -98,8 +208,24 @@
     allFiles: [],
     filesById: new Map(),
 
+    // Visitas Técnicas estructuradas por Generaciones y vinculadas con Google Drive
+    visitasDriveFolder: null,
+    visitasDriveFiles: [],
+    indexedGeneraciones: [],
+    generacionesById: new Map(),
+    activeGeneracionId: 'ctt-egresados-2026',
+    indexedVisitas: [],
+    visitasBySlug: new Map(),
+    unmatchedVisitasFiles: [],
+    activeVisitaSlug: null,
+
+    // Lightbox de galería fotográfica
+    lightboxPhotos: [],
+    lightboxIndex: 0,
+    lastLightboxTriggerEl: null,
+
     // Vista y ruta activa controlada por hash
-    // routeType: 'welcome' | 'semester' | 'general' | 'subject' | 'search' | 'all-files' | 'favorites'
+    // routeType: 'welcome' | 'semester' | 'general' | 'subject' | 'visitas-list' | 'visita-detail' | 'search' | 'all-files' | 'favorites'
     routeType: 'welcome',
     activeSemesterId: null,
     activeSubjectSlug: null,
@@ -250,6 +376,25 @@
     dom.filesHeadingText = document.getElementById('filesHeadingText');
     dom.filesCountLabel = document.getElementById('filesCountLabel');
     dom.filesContainer = document.getElementById('filesContainer');
+
+    // Visitas Técnicas Sections & Lightbox
+    dom.visitasListSection = document.getElementById('visitasListSection');
+    dom.visitasHeroBanner = document.getElementById('visitasHeroBanner');
+    dom.visitasGeneracionBar = document.getElementById('visitasGeneracionBar');
+    dom.visitasGrid = document.getElementById('visitasGrid');
+    dom.unmatchedVisitasWrap = document.getElementById('unmatchedVisitasWrap');
+    dom.unmatchedVisitasCount = document.getElementById('unmatchedVisitasCount');
+    dom.unmatchedVisitasGrid = document.getElementById('unmatchedVisitasGrid');
+    dom.visitaDetailSection = document.getElementById('visitaDetailSection');
+
+    dom.galleryLightbox = document.getElementById('galleryLightbox');
+    dom.lightboxCounter = document.getElementById('lightboxCounter');
+    dom.lightboxCloseBtn = document.getElementById('lightboxCloseBtn');
+    dom.lightboxPrevBtn = document.getElementById('lightboxPrevBtn');
+    dom.lightboxNextBtn = document.getElementById('lightboxNextBtn');
+    dom.lightboxStage = document.getElementById('lightboxStage');
+    dom.lightboxImg = document.getElementById('lightboxImg');
+    dom.lightboxCaption = document.getElementById('lightboxCaption');
 
     dom.emptyState = document.getElementById('emptyState');
     dom.emptyStateTitle = document.getElementById('emptyStateTitle');
@@ -718,7 +863,20 @@
       return indexedFolder;
     }
 
-    const rootFolders = (data.folders || []).map((f) => traverseFolder(f, null, [], null));
+    state.visitasDriveFolder = null;
+    state.visitasDriveFiles = [];
+
+    const rootFolders = [];
+    for (const f of data.folders || []) {
+      const indexed = traverseFolder(f, null, [], null);
+      if (isVisitasTecnicasFolder(f.name)) {
+        state.visitasDriveFolder = indexed;
+        state.visitasDriveFiles = indexed.allDescendantFiles || [];
+        state.subjectsBySlug.delete(indexed.slug);
+      } else {
+        rootFolders.push(indexed);
+      }
+    }
 
     rootFolders.sort((a, b) => {
       if (a.academic.sortOrder !== b.academic.sortOrder) {
@@ -728,6 +886,8 @@
     });
 
     state.catalog.indexedRootFolders = rootFolders;
+
+    linkVisitasWithDriveFiles();
 
     const mainSubjectsCount = rootFolders.length;
     const totalFiles = Math.max(Number(data.totalFiles) || 0, state.allFiles.length);
@@ -742,6 +902,222 @@
     if (journeySpan) {
       journeySpan.textContent = `Ver los ${totalFiles} archivos`;
     }
+  }
+
+  function isVisitasTecnicasFolder(folderName) {
+    const key = normalizeMatchKey(folderName);
+    return Boolean(
+      key === 'visitas tecnicas' ||
+        key === 'visita tecnica' ||
+        key.startsWith('visitas tecnicas')
+    );
+  }
+
+  function buildVisitasConfig(rawData) {
+    if (rawData && Array.isArray(rawData.generaciones) && rawData.generaciones.length > 0) {
+      state.generacionesConfig = rawData.generaciones;
+    } else if (rawData && Array.isArray(rawData.visitas) && rawData.visitas.length > 0) {
+      state.generacionesConfig = [
+        {
+          id: 'ctt-egresados-2026',
+          nombre: 'CTT Egresados 2026',
+          driveSubfolder: 'CTT Egresados 2026',
+          periodo: '2025 – 2026',
+          portada: 'assets/visitas/ctt-egresados-2026/portada-generacion.jpg',
+          descripcion:
+            'Visitas técnicas realizadas por la generación egresada en 2026 de la Tecnicatura en Logística.',
+          visitas: rawData.visitas,
+        },
+      ];
+    } else {
+      state.generacionesConfig = DEFAULT_GENERACIONES_CONFIG;
+    }
+  }
+
+  function findDriveSubfolderForGeneration(rootVisitasFolder, driveSubfolderName) {
+    if (!rootVisitasFolder || !Array.isArray(rootVisitasFolder.subfolders)) return null;
+    const targetKey = normalizeMatchKey(driveSubfolderName);
+    if (!targetKey) return null;
+
+    function searchSub(folder) {
+      for (const sub of folder.subfolders || []) {
+        const subKey = normalizeMatchKey(sub.rawFolderName || sub.displayName || sub.name);
+        if (subKey && (subKey === targetKey || subKey.includes(targetKey) || targetKey.includes(subKey))) {
+          return sub;
+        }
+        const nested = searchSub(sub);
+        if (nested) return nested;
+      }
+      return null;
+    }
+
+    return searchSub(rootVisitasFolder);
+  }
+
+  function linkVisitasWithDriveFiles() {
+    const rawGeneraciones =
+      Array.isArray(state.generacionesConfig) && state.generacionesConfig.length > 0
+        ? state.generacionesConfig
+        : DEFAULT_GENERACIONES_CONFIG;
+
+    const allRootDriveFiles = Array.isArray(state.visitasDriveFiles) ? state.visitasDriveFiles : [];
+    const matchedFileIds = new Set();
+
+    state.indexedGeneraciones = [];
+    state.generacionesById.clear();
+    state.indexedVisitas = [];
+    state.visitasBySlug.clear();
+
+    rawGeneraciones.forEach((gen, gIdx) => {
+      const genId = cleanText(gen.id) || slugify(gen.nombre) || `generacion-${gIdx + 1}`;
+      const genNombre = cleanText(gen.nombre) || 'CTT Egresados 2026';
+      const genDriveSubfolder = cleanText(gen.driveSubfolder) || genNombre;
+      const genPeriodo = cleanText(gen.periodo) || '2025 – 2026';
+      const genPortada =
+        cleanText(gen.portada) || 'assets/visitas/ctt-egresados-2026/portada-generacion.jpg';
+      const genDescripcion =
+        cleanText(gen.descripcion) ||
+        'Visitas técnicas realizadas por la generación egresada en 2026 de la Tecnicatura en Logística.';
+
+      // Buscar la subcarpeta en Drive que coincida con generacion.driveSubfolder (ej. "CTT Egresados 2026")
+      // y usar la raíz de Visitas Técnicas solo como respaldo si la subcarpeta no existiera.
+      const driveSubfolderObj = findDriveSubfolderForGeneration(
+        state.visitasDriveFolder,
+        genDriveSubfolder
+      );
+      const subfolderFiles =
+        driveSubfolderObj && Array.isArray(driveSubfolderObj.allDescendantFiles)
+          ? driveSubfolderObj.allDescendantFiles
+          : [];
+      const primaryPool = subfolderFiles.length > 0 ? subfolderFiles : allRootDriveFiles;
+
+      const sortedVisitas = [...(Array.isArray(gen.visitas) ? gen.visitas : [])].sort(
+        (a, b) => (Number(a.numero) || 0) - (Number(b.numero) || 0)
+      );
+
+      const enrichedVisitas = [];
+
+      sortedVisitas.forEach((visit, idx) => {
+        const num = Number(visit.numero) || idx + 1;
+        const slug = cleanText(visit.slug) || `${genId}-visita-${num}`;
+        const matchToken = normalizeForSearch(visit.informeMatch || '');
+
+        let matchedFile = null;
+        if (matchToken) {
+          matchedFile =
+            primaryPool.find((file) => {
+              if (matchedFileIds.has(file.id)) return false;
+              const hay = normalizeForSearch(`${file.rawCleanName} ${file.displayName}`);
+              return hay.includes(matchToken);
+            }) || null;
+
+          // Respaldo en la raíz de Visitas Técnicas si la subcarpeta existía pero el archivo estaba en la raíz
+          if (!matchedFile && primaryPool !== allRootDriveFiles) {
+            matchedFile =
+              allRootDriveFiles.find((file) => {
+                if (matchedFileIds.has(file.id)) return false;
+                const hay = normalizeForSearch(`${file.rawCleanName} ${file.displayName}`);
+                return hay.includes(matchToken);
+              }) || null;
+          }
+        }
+
+        if (matchedFile) {
+          matchedFileIds.add(matchedFile.id);
+          matchedFile.isVisitaReport = true;
+          matchedFile.visitaSlug = slug;
+          matchedFile.generacionId = genId;
+          matchedFile.generacionNombre = genNombre;
+          matchedFile.rootSubjectName = `Visitas Técnicas · ${genNombre}`;
+          matchedFile.cleanPath = `Visitas Técnicas / ${genNombre} / Visita N.° ${num}`;
+          matchedFile.academic = {
+            anio: 'general',
+            semestres: [],
+            badgeLabel: `${genNombre} · Visita N.° ${num}`,
+            fullLabel: `${genNombre} · Visita Técnica N.° ${num}`,
+            badgeClass: 'acad-anio-2',
+            sortOrder: 95,
+          };
+          matchedFile.searchName = normalizeForSearch(
+            `${matchedFile.rawCleanName} ${matchedFile.displayName} ${visit.titulo} ${genNombre} visita tecnica ${num}`
+          );
+          matchedFile.searchPath = normalizeForSearch(
+            `visitas tecnicas ${genNombre} ${genPeriodo} ${visit.titulo} ${visit.lugar} ${visit.semestre} ${(visit.materiasRelacionadas || []).join(' ')}`
+          );
+        }
+
+        const enrichedVisit = {
+          ...visit,
+          slug,
+          numero: num,
+          titulo: cleanText(visit.titulo) || `Visita Técnica N.° ${num}`,
+          lugar: cleanText(visit.lugar),
+          mapsQuery: cleanText(visit.mapsQuery),
+          mapsUrl: cleanText(visit.mapsUrl),
+          fecha: cleanText(visit.fecha),
+          fechaTexto: cleanText(visit.fechaTexto) || cleanText(visit.semestre),
+          semestre: cleanText(visit.semestre),
+          resumen: cleanText(visit.resumen),
+          portada: cleanText(visit.portada),
+          informeMatch: cleanText(visit.informeMatch),
+          materiasRelacionadas: Array.isArray(visit.materiasRelacionadas)
+            ? visit.materiasRelacionadas.map((m) => cleanText(m)).filter(Boolean)
+            : [],
+          galeria: Array.isArray(visit.galeria) ? visit.galeria : [],
+          accentColor: VISITA_ACCENTS[(num - 1) % VISITA_ACCENTS.length] || '#0284C7',
+          informeFile: matchedFile,
+          generacionId: genId,
+          generacionNombre: genNombre,
+          generacionPeriodo: genPeriodo,
+          generacionPortada: genPortada,
+          generacionDescripcion: genDescripcion,
+        };
+
+        enrichedVisitas.push(enrichedVisit);
+        state.indexedVisitas.push(enrichedVisit);
+        state.visitasBySlug.set(slug, enrichedVisit);
+
+        // Alias sin prefijo de año por compatibilidad con enlaces anteriores
+        const shortSlug = slug.replace(/^\d{4}-/, '');
+        if (shortSlug && !state.visitasBySlug.has(shortSlug)) {
+          state.visitasBySlug.set(shortSlug, enrichedVisit);
+        }
+      });
+
+      const enrichedGen = {
+        id: genId,
+        nombre: genNombre,
+        driveSubfolder: genDriveSubfolder,
+        periodo: genPeriodo,
+        portada: genPortada,
+        descripcion: genDescripcion,
+        visitas: enrichedVisitas,
+      };
+
+      state.indexedGeneraciones.push(enrichedGen);
+      state.generacionesById.set(genId, enrichedGen);
+    });
+
+    if (!state.generacionesById.has(state.activeGeneracionId) && state.indexedGeneraciones.length > 0) {
+      state.activeGeneracionId = state.indexedGeneraciones[0].id;
+    }
+
+    state.unmatchedVisitasFiles = allRootDriveFiles.filter((file) => {
+      if (matchedFileIds.has(file.id)) return false;
+      file.isVisitaReport = true;
+      file.visitaSlug = null;
+      file.rootSubjectName = 'Visitas Técnicas';
+      file.cleanPath = 'Visitas Técnicas';
+      file.academic = {
+        anio: 'general',
+        semestres: [],
+        badgeLabel: 'Visitas Técnicas',
+        fullLabel: 'Visitas Técnicas',
+        badgeClass: 'acad-anio-2',
+        sortOrder: 95,
+      };
+      return true;
+    });
   }
 
   // --- Control del Selector de Modo de Búsqueda Superior (Título | Contenido) ---
@@ -910,6 +1286,12 @@
       const parts = decodeURIComponent(rawHash).split('/');
       const slug = parts[1] || '';
       const subId = parts[2] || null;
+
+      if (isVisitasTecnicasFolder(slug) || slug === 'visitas-tecnicas') {
+        setRouteHash('#visitas-tecnicas');
+        return;
+      }
+
       const subjectFolder = state.subjectsBySlug.get(slug);
 
       if (subjectFolder) {
@@ -934,6 +1316,40 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
+    }
+
+    // 4b. #visitas-tecnicas -> Listado de las 5 Visitas Técnicas
+    if (rawHash === 'visitas-tecnicas') {
+      state.routeType = 'visitas-list';
+      state.activeVisitaSlug = null;
+      state.activeSubjectSlug = null;
+      state.activeFolderId = null;
+      state.expandedSemesters.add('sem-visitas');
+      renderCurrentRoute();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    // 4c. #visita/<slug> -> Página de detalle de una Visita Técnica
+    if (rawHash.startsWith('visita/')) {
+      const parts = decodeURIComponent(rawHash).split('/');
+      const slug = parts[1] || '';
+      const matchedVisit = state.visitasBySlug.get(slug);
+      if (matchedVisit) {
+        state.routeType = 'visita-detail';
+        state.activeVisitaSlug = matchedVisit.slug;
+        if (matchedVisit.generacionId && state.generacionesById.has(matchedVisit.generacionId)) {
+          state.activeGeneracionId = matchedVisit.generacionId;
+        }
+        state.activeSubjectSlug = null;
+        state.activeFolderId = null;
+        state.expandedSemesters.add('sem-visitas');
+        renderCurrentRoute();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      setRouteHash('#visitas-tecnicas');
+      return;
     }
 
     // 5. #buscar[?modo=contenido|titulo&q=...]
@@ -1128,6 +1544,75 @@
         `;
       }
 
+      // En la sección Recursos agregar Visitas Técnicas con su contador dinámico (5)
+      if (yearBlock.yearTitle === 'Recursos') {
+        const visitasList = state.indexedVisitas || [];
+        const isVisitasExpanded = state.expandedSemesters.has('sem-visitas');
+        const isVisitasActive =
+          state.routeType === 'visitas-list' || state.routeType === 'visita-detail';
+
+        html += `
+          <div class="sem-accordion-item">
+            <div class="sem-accordion-row ${isVisitasActive ? 'active' : ''}">
+              <button
+                type="button"
+                class="sem-toggle-btn ${isVisitasExpanded ? 'expanded' : ''}"
+                data-sem-toggle="sem-visitas"
+                aria-label="Expandir o colapsar Visitas Técnicas"
+                title="Mostrar listado de Visitas Técnicas"
+              >
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.2" fill="none">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+
+              <button
+                type="button"
+                class="sem-select-btn"
+                data-sem-hash="#visitas-tecnicas"
+                data-sem-key="sem-visitas"
+                title="Ver las ${visitasList.length} Visitas Técnicas de la Tecnicatura"
+              >
+                <span class="sem-label-wrap">
+                  <svg class="sem-icon" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <span class="tree-node-name">Visitas Técnicas</span>
+                </span>
+                <span class="tree-badge" title="${visitasList.length} visitas técnicas">${visitasList.length}</span>
+              </button>
+            </div>
+
+            <ul class="sem-subjects-list ${isVisitasExpanded ? '' : 'hidden'}">
+              ${visitasList
+                .map((vis) => {
+                  const isVisActive =
+                    state.routeType === 'visita-detail' && state.activeVisitaSlug === vis.slug;
+                  const statusLabel = vis.informeFile ? 'PDF' : `N.° ${vis.numero}`;
+                  return `
+                    <li>
+                      <button
+                        type="button"
+                        class="tree-subject-btn ${isVisActive ? 'active' : ''}"
+                        data-visita-slug="${escapeHtml(vis.slug)}"
+                        title="Visita N.° ${vis.numero}: ${escapeHtml(vis.titulo)}"
+                      >
+                        <span class="tree-subject-left">
+                          <span class="tree-subject-dot" style="--subject-dot: ${escapeHtml(vis.accentColor)};"></span>
+                          <span class="tree-node-name">${vis.numero}. ${escapeHtml(vis.titulo)}</span>
+                        </span>
+                        <span class="tree-badge">${escapeHtml(statusLabel)}</span>
+                      </button>
+                    </li>
+                  `;
+                })
+                .join('')}
+            </ul>
+          </div>
+        `;
+      }
+
       html += `</div>`;
     }
 
@@ -1143,7 +1628,7 @@
   }
 
   function toggleAllTreeExpansion() {
-    const allKeys = ['sem-1', 'sem-2', 'sem-3', 'sem-4', 'sem-general'];
+    const allKeys = ['sem-1', 'sem-2', 'sem-3', 'sem-4', 'sem-general', 'sem-visitas'];
     state.allTreeExpanded = !state.allTreeExpanded;
     state.expandedSemesters.clear();
 
@@ -1273,6 +1758,70 @@
           </div>
           <span class="journey-cta-text">
             <span>Explorar biblioteca</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.2" fill="none">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </span>
+        </div>
+      </article>
+    `);
+
+    const primaryGen =
+      state.generacionesById.get(state.activeGeneracionId) ||
+      (state.indexedGeneraciones && state.indexedGeneraciones[0]) ||
+      DEFAULT_GENERACIONES_CONFIG[0];
+    const genPortada =
+      (primaryGen && primaryGen.portada) ||
+      'assets/visitas/ctt-egresados-2026/portada-generacion.jpg';
+    const genLabel = primaryGen
+      ? `${primaryGen.nombre} · ${primaryGen.periodo}`
+      : 'CTT Egresados 2026 · 2025 – 2026';
+
+    const visitasTotal = (state.indexedVisitas && state.indexedVisitas.length) || 5;
+    const matchedReportsCount = (state.indexedVisitas || []).filter((v) => Boolean(v.informeFile)).length;
+    const totalVisitasReportsCount =
+      matchedReportsCount + ((state.unmatchedVisitasFiles && state.unmatchedVisitasFiles.length) || 0);
+    const reportsChipLabel =
+      totalVisitasReportsCount > 0
+        ? `${totalVisitasReportsCount} ${totalVisitasReportsCount === 1 ? 'informe PDF' : 'informes PDF'}`
+        : 'Informes PDF en Drive';
+
+    cardsHtml.push(`
+      <article
+        class="semester-journey-card featured-general featured-visitas-gen"
+        style="--sem-accent: #0284C7; background-image: url('${escapeHtml(genPortada)}');"
+        data-goto-hash="#visitas-tecnicas"
+        tabindex="0"
+        role="button"
+        aria-label="Explorar Visitas Técnicas de la Tecnicatura (${escapeHtml(genLabel)})"
+      >
+        <div style="flex: 1;">
+          <div class="journey-card-top">
+            <span class="journey-year-pill acad-anio-1">Salidas de Campo · ${escapeHtml(genLabel)}</span>
+          </div>
+          <h3 class="journey-card-title">Visitas Técnicas de la Tecnicatura</h3>
+          <p class="journey-card-desc">Recorridas académicas por hubs de carga aérea, operadores farmacéuticos en zona franca, agencias marítimas, la UAM y terminales portuarias especializadas, con informes técnicos en PDF y galería fotográfica.</p>
+        </div>
+
+        <div class="journey-card-footer">
+          <div class="journey-counts-group">
+            <span class="journey-count-chip">
+              <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>${visitasTotal} visitas técnicas</span>
+            </span>
+            <span class="journey-count-chip">
+              <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              </svg>
+              <span>${escapeHtml(reportsChipLabel)}</span>
+            </span>
+          </div>
+          <span class="journey-cta-text">
+            <span>Ver visitas e informes</span>
             <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.2" fill="none">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
@@ -1476,6 +2025,27 @@
           };
         }
       }
+    } else if (state.routeType === 'visitas-list') {
+      items.push({
+        label: 'Visitas Técnicas',
+        isCurrent: true,
+      });
+      backBtnConfig = { label: 'Volver a Inicio', hash: '#inicio' };
+    } else if (state.routeType === 'visita-detail') {
+      const visit = state.visitasBySlug.get(state.activeVisitaSlug);
+      items.push({
+        label: 'Visitas Técnicas',
+        hash: '#visitas-tecnicas',
+        isCurrent: false,
+      });
+      items.push({
+        label: visit ? `Visita N.° ${visit.numero}: ${visit.titulo}` : 'Detalle de Visita',
+        isCurrent: true,
+      });
+      backBtnConfig = {
+        label: 'Todas las Visitas Técnicas',
+        hash: '#visitas-tecnicas',
+      };
     } else if (state.routeType === 'search') {
       const modeText =
         state.activeSearchMode === 'contenido' ? 'Búsqueda en contenido' : 'Búsqueda por título';
@@ -1703,8 +2273,14 @@
       .join('');
   }
 
-  function renderFileCards(files, highlightQuery = '', showSubjectAcademicTag = false) {
-    dom.filesContainer.innerHTML = files
+  function renderFileCards(
+    files,
+    highlightQuery = '',
+    showSubjectAcademicTag = false,
+    targetContainer = dom.filesContainer
+  ) {
+    if (!targetContainer) return;
+    targetContainer.innerHTML = files
       .map((file) => {
         const catMeta = CATEGORY_META[file.category] || CATEGORY_META.other;
         const isFav = state.favorites.has(file.id);
@@ -1716,6 +2292,10 @@
                <span>${escapeHtml(file.rootSubjectName)} · ${escapeHtml(file.academic.badgeLabel)}</span>
              </div>`
           : '';
+
+        const jumpAttrs = file.isVisitaReport
+          ? `data-jump-visita="${escapeHtml(file.visitaSlug || '__list__')}"`
+          : `data-jump-subject="${escapeHtml(file.subjectSlug)}" data-jump-folder="${escapeHtml(file.folderId)}"`;
 
         return `
           <article
@@ -1760,9 +2340,8 @@
                 <button
                   type="button"
                   class="file-folder-tag"
-                  data-jump-subject="${escapeHtml(file.subjectSlug)}"
-                  data-jump-folder="${escapeHtml(file.folderId)}"
-                  title="Ir a la carpeta: ${escapeHtml(file.cleanPath)}"
+                  ${jumpAttrs}
+                  title="Ir a: ${escapeHtml(file.cleanPath)}"
                 >
                   <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none">
                     <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
@@ -1805,6 +2384,738 @@
       .join('');
   }
 
+  // --- Renderizado de Visitas Técnicas (#visitas-tecnicas y #visita/<slug>) ---
+
+  function buildGoogleMapsEmbedUrl(mapsQuery, viewType = 'k') {
+    const q = cleanText(mapsQuery);
+    if (!q) return '';
+    const t = viewType === 'm' ? 'm' : 'k';
+    return `https://maps.google.com/maps?q=${encodeURIComponent(q)}&t=${t}&z=16&ie=UTF8&iwloc=&output=embed`;
+  }
+
+  function getVisitaMapsExternalUrl(visit) {
+    if (!visit) return '';
+    if (visit.mapsUrl) return visit.mapsUrl;
+    if (visit.mapsQuery) {
+      return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(visit.mapsQuery)}`;
+    }
+    return '';
+  }
+
+  function normalizeGalleryItems(galeria, visitTitle) {
+    if (!Array.isArray(galeria)) return [];
+    return galeria
+      .map((item, idx) => {
+        if (typeof item === 'string') {
+          const src = cleanText(item);
+          if (!src) return null;
+          return {
+            src,
+            caption: `${visitTitle} — Fotografía ${idx + 1}`,
+            alt: `${visitTitle} — Fotografía ${idx + 1}`,
+          };
+        }
+        if (item && typeof item === 'object') {
+          const src = cleanText(item.src || item.url || item.path);
+          if (!src) return null;
+          const caption = cleanText(item.caption || item.titulo || item.alt || `${visitTitle} — Fotografía ${idx + 1}`);
+          return {
+            src,
+            caption,
+            alt: cleanText(item.alt || caption),
+          };
+        }
+        return null;
+      })
+      .filter(Boolean);
+  }
+
+  function renderVisitasListView() {
+    if (!dom.visitasGrid) return;
+
+    const generaciones =
+      Array.isArray(state.indexedGeneraciones) && state.indexedGeneraciones.length > 0
+        ? state.indexedGeneraciones
+        : [];
+    const activeGen =
+      state.generacionesById.get(state.activeGeneracionId) ||
+      generaciones[0] || {
+        id: 'ctt-egresados-2026',
+        nombre: 'CTT Egresados 2026',
+        driveSubfolder: 'CTT Egresados 2026',
+        periodo: '2025 – 2026',
+        portada: 'assets/visitas/ctt-egresados-2026/portada-generacion.jpg',
+        descripcion:
+          'Visitas técnicas realizadas por la generación egresada en 2026 de la Tecnicatura en Logística.',
+        visitas: state.indexedVisitas || [],
+      };
+
+    const visitas = Array.isArray(activeGen.visitas) ? activeGen.visitas : state.indexedVisitas || [];
+    const availableReports = visitas.filter((v) => Boolean(v.informeFile)).length;
+    const genPortada =
+      cleanText(activeGen.portada) || 'assets/visitas/ctt-egresados-2026/portada-generacion.jpg';
+
+    // 1. Portada principal con la foto grupal de la generación (píldoras arriba, foto despejada al centro, título y descripción abajo)
+    if (dom.visitasHeroBanner) {
+      dom.visitasHeroBanner.style.backgroundImage = `url('${escapeHtml(genPortada)}')`;
+      dom.visitasHeroBanner.innerHTML = `
+        <img
+          src="${escapeHtml(genPortada)}"
+          alt="${escapeHtml(activeGen.nombre)}"
+          class="visitas-gen-banner-img"
+          onerror="this.remove()"
+        />
+        <div class="visitas-gen-banner-overlay"></div>
+
+        <div class="visitas-gen-banner-top">
+          <div class="visitas-gen-banner-badges">
+            <span class="visitas-gen-kicker-pill">
+              <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.2" fill="none" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>Visitas Técnicas</span>
+            </span>
+            <span class="visitas-gen-period-pill">
+              <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+              <span>${escapeHtml(activeGen.nombre)} · ${escapeHtml(activeGen.periodo)}</span>
+            </span>
+            <span class="visitas-gen-period-pill">
+              <span>${visitas.length} visitas · ${availableReports} ${
+        availableReports === 1 ? 'informe PDF disponible' : 'informes PDF disponibles'
+      }</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="visitas-gen-banner-bottom">
+          <h1 class="visitas-gen-banner-title">Visitas Técnicas — ${escapeHtml(activeGen.nombre)}</h1>
+          <p class="visitas-gen-banner-desc">${escapeHtml(activeGen.descripcion)}</p>
+        </div>
+      `;
+    }
+
+    // 2. Encabezado / Selector de generación listo para filtrar si se suman más generaciones
+    if (dom.visitasGeneracionBar) {
+      const pillsHtml = generaciones
+        .map((gen) => {
+          const isActive = gen.id === activeGen.id;
+          return `
+            <button
+              type="button"
+              class="visitas-gen-btn ${isActive ? 'active' : ''}"
+              data-select-generacion="${escapeHtml(gen.id)}"
+              aria-pressed="${isActive}"
+              title="Filtrar visitas de ${escapeHtml(gen.nombre)} (${escapeHtml(gen.periodo)})"
+            >
+              <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+              <span>${escapeHtml(gen.nombre)}</span>
+              <span class="visitas-gen-btn-period">· ${escapeHtml(gen.periodo)}</span>
+              <span class="visitas-gen-btn-count">${gen.visitas.length}</span>
+            </button>
+          `;
+        })
+        .join('');
+
+      dom.visitasGeneracionBar.innerHTML = `
+        <div class="visitas-gen-selector-group" role="group" aria-label="Selector de generación">
+          <span class="visitas-gen-label">Generación:</span>
+          <div class="visitas-gen-pills">${pillsHtml}</div>
+        </div>
+        <div class="visitas-gen-summary">
+          <span>Mostrando <strong>${visitas.length}</strong> visitas técnicas de <strong>${escapeHtml(
+        activeGen.nombre
+      )}</strong> (${escapeHtml(activeGen.periodo)})</span>
+        </div>
+      `;
+    }
+
+    dom.visitasGrid.innerHTML = visitas
+      .map((visit) => {
+        const coverImgHtml = visit.portada
+          ? `<img src="${escapeHtml(visit.portada)}" alt="" class="banner-bg-img" loading="lazy" onerror="this.remove()" />`
+          : '';
+
+        const hasReport = Boolean(visit.informeFile);
+        const statusPillHtml = hasReport
+          ? `<span class="visita-status-pill status-ready" title="Informe PDF vinculado desde Google Drive">
+               <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.3" fill="none" aria-hidden="true">
+                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
+               </svg>
+               <span>Informe PDF disponible</span>
+             </span>`
+          : `<span class="visita-status-pill status-pending" title="El informe se vinculará automáticamente al cargarse en Drive">
+               <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+                 <circle cx="12" cy="12" r="10"></circle>
+                 <polyline points="12 6 12 12 16 14"></polyline>
+               </svg>
+               <span>Informe pendiente</span>
+             </span>`;
+
+        const photos = normalizeGalleryItems(visit.galeria, visit.titulo);
+        const photosCountLabel =
+          photos.length > 0
+            ? `${photos.length} ${photos.length === 1 ? 'foto' : 'fotos'}`
+            : 'Galería próximamente';
+
+        const relatedChipsHtml = (visit.materiasRelacionadas || [])
+          .map((mat) => `<span class="visita-related-chip">${escapeHtml(mat)}</span>`)
+          .join('');
+
+        const mapsHref = getVisitaMapsExternalUrl(visit);
+        const placeOverlayHtml = mapsHref
+          ? `<a
+               href="${escapeHtml(mapsHref)}"
+               class="visita-place-overlay visita-place-link"
+               target="_blank"
+               rel="noopener noreferrer"
+               data-stop-prop="true"
+               title="Ver ubicación en Google Maps"
+               aria-label="Ver ubicación de ${escapeHtml(visit.lugar)} en Google Maps"
+             >
+               <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.2" fill="none" aria-hidden="true">
+                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                 <circle cx="12" cy="10" r="3"></circle>
+               </svg>
+               <span class="visita-place-text">${escapeHtml(visit.lugar)}</span>
+               <svg class="visita-place-ext-icon" viewBox="0 0 24 24" width="11" height="11" stroke="currentColor" stroke-width="2.2" fill="none" aria-hidden="true">
+                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                 <polyline points="15 3 21 3 21 9"></polyline>
+                 <line x1="10" y1="14" x2="21" y2="3"></line>
+               </svg>
+             </a>`
+          : `<span class="visita-place-overlay" title="${escapeHtml(visit.lugar)}">
+               <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.2" fill="none" aria-hidden="true">
+                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                 <circle cx="12" cy="10" r="3"></circle>
+               </svg>
+               <span class="visita-place-text">${escapeHtml(visit.lugar)}</span>
+             </span>`;
+
+        return `
+          <article
+            class="visita-card"
+            style="--visita-accent: ${escapeHtml(visit.accentColor || '#0284C7')};"
+            data-open-visita="${escapeHtml(visit.slug)}"
+            tabindex="0"
+            role="button"
+            aria-label="Ver Visita Técnica N.° ${visit.numero}: ${escapeHtml(visit.titulo)}"
+          >
+            <div class="visita-card-cover">
+              <div class="visita-cover-fallback-art" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="38" height="38" stroke="currentColor" stroke-width="1.5" fill="none">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Visita Técnica N.° ${visit.numero}</span>
+              </div>
+              ${coverImgHtml}
+              <div class="visita-card-cover-overlay"></div>
+
+              <div class="visita-cover-top">
+                <span class="visita-num-badge">Visita N.° ${visit.numero}</span>
+                <span class="visita-sem-badge">${escapeHtml(visit.semestre)}</span>
+              </div>
+
+              <div class="visita-cover-bottom">
+                ${placeOverlayHtml}
+              </div>
+            </div>
+
+            <div class="visita-card-body">
+              <div>
+                <div class="visita-date-row">
+                  <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <span>${escapeHtml(visit.fechaTexto || visit.semestre)}</span>
+                </div>
+
+                <h3 class="visita-card-title">${escapeHtml(visit.titulo)}</h3>
+                <p class="visita-card-resumen">${escapeHtml(visit.resumen)}</p>
+
+                ${
+                  relatedChipsHtml
+                    ? `<div class="visita-related-chips" aria-label="Materias relacionadas">${relatedChipsHtml}</div>`
+                    : ''
+                }
+              </div>
+
+              <div class="visita-card-footer">
+                <div class="visita-status-group">
+                  ${statusPillHtml}
+                  <span class="visita-photos-pill">
+                    <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                      <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                      <polyline points="21 15 16 10 5 21"></polyline>
+                    </svg>
+                    <span>${escapeHtml(photosCountLabel)}</span>
+                  </span>
+                </div>
+
+                <span class="visita-cta-text">
+                  <span>Ver visita e informe</span>
+                  <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.2" fill="none">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </article>
+        `;
+      })
+      .join('');
+
+    // Bloque discreto al pie si hay otros PDFs en la carpeta Visitas Técnicas no asociados a las 5 visitas
+    const unmatched = state.unmatchedVisitasFiles || [];
+    if (dom.unmatchedVisitasWrap && dom.unmatchedVisitasGrid) {
+      if (unmatched.length > 0) {
+        dom.unmatchedVisitasWrap.classList.remove('hidden');
+        if (dom.unmatchedVisitasCount) {
+          dom.unmatchedVisitasCount.textContent = `${unmatched.length} ${unmatched.length === 1 ? 'archivo' : 'archivos'}`;
+        }
+        renderFileCards(unmatched, '', false, dom.unmatchedVisitasGrid);
+      } else {
+        dom.unmatchedVisitasWrap.classList.add('hidden');
+        dom.unmatchedVisitasGrid.innerHTML = '';
+      }
+    }
+  }
+
+  function renderVisitaDetailView() {
+    if (!dom.visitaDetailSection) return;
+    const visit = state.visitasBySlug.get(state.activeVisitaSlug);
+    if (!visit) {
+      setRouteHash('#visitas-tecnicas');
+      return;
+    }
+
+    const coverImgHtml = visit.portada
+      ? `<img src="${escapeHtml(visit.portada)}" alt="" class="banner-bg-img" loading="lazy" onerror="this.remove()" />`
+      : '';
+
+    const relatedLinksHtml = (visit.materiasRelacionadas || [])
+      .map((matName) => {
+        const matchedCfg = state.materiaLookup.get(normalizeMatchKey(matName));
+        const slug = matchedCfg ? matchedCfg.slug : slugify(matName);
+        if (state.subjectsBySlug.has(slug)) {
+          return `
+            <button
+              type="button"
+              class="visita-related-link"
+              data-open-subject="${escapeHtml(slug)}"
+              title="Ir a la asignatura ${escapeHtml(matName)}"
+            >
+              <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span>${escapeHtml(matName)}</span>
+            </button>
+          `;
+        }
+        return `<span class="visita-detail-meta-pill">${escapeHtml(matName)}</span>`;
+      })
+      .join('');
+
+    let reportCardHtml = '';
+    if (visit.informeFile) {
+      const file = visit.informeFile;
+      const isFav = state.favorites.has(file.id);
+      reportCardHtml = `
+        <div class="visita-report-card">
+          <div class="visita-report-left">
+            <div class="visita-report-icon file-type-icon cat-pdf" aria-hidden="true">
+              ${CATEGORY_META.pdf.icon}
+            </div>
+            <div class="visita-report-info">
+              <div class="visita-report-kicker">Informe Técnico de la Visita · PDF disponible</div>
+              <h2 class="visita-report-title">${escapeHtml(file.displayName)}</h2>
+              <div class="visita-report-meta">
+                <span class="ext-badge cat-pdf">PDF</span>
+                <span>Tamaño: <strong>${escapeHtml(file.sizeFormatted || 'PDF')}</strong></span>
+                ${file.formattedDate ? `<span>· Actualizado: ${escapeHtml(file.formattedDate)}</span>` : ''}
+              </div>
+            </div>
+          </div>
+
+          <div class="visita-report-actions">
+            <button
+              type="button"
+              class="btn-primary"
+              data-preview-file="${escapeHtml(file.id)}"
+              title="Abrir el informe en el visor integrado del portal"
+            >
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.2" fill="none" aria-hidden="true">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <span>Ver informe</span>
+            </button>
+
+            <a
+              href="${escapeHtml(file.driveUrl)}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-secondary"
+              title="Abrir documento original en Google Drive en una pestaña nueva"
+            >
+              <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+              <span>Abrir en Drive</span>
+            </a>
+
+            <a
+              href="${escapeHtml(file.downloadUrl)}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-secondary"
+              title="Descargar informe PDF"
+            >
+              <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.2" fill="none" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Descargar</span>
+            </a>
+
+            <button
+              type="button"
+              class="card-fav-btn ${isFav ? 'is-fav' : ''}"
+              data-fav-file="${escapeHtml(file.id)}"
+              data-file-id="${escapeHtml(file.id)}"
+              aria-label="${isFav ? 'Quitar de Favoritos' : 'Guardar en Favoritos'}"
+              title="${isFav ? 'Quitar de Favoritos' : 'Guardar en Favoritos'}"
+            >
+              <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </button>
+          </div>
+        </div>
+      `;
+    } else {
+      reportCardHtml = `
+        <div class="visita-report-card">
+          <div class="visita-report-left">
+            <div class="visita-report-icon file-type-icon cat-other" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div class="visita-report-info">
+              <div class="visita-report-kicker" style="color: var(--text-muted);">Documento Técnico</div>
+              <h2 class="visita-report-title">Informe pendiente de carga</h2>
+              <div class="visita-report-meta">
+                <span>El informe PDF se vinculará automáticamente en cuanto esté disponible en la carpeta <strong>Visitas Técnicas</strong> de Google Drive.</span>
+              </div>
+            </div>
+          </div>
+          <div class="visita-report-actions">
+            <span class="visita-status-pill status-pending">Pendiente en Drive</span>
+          </div>
+        </div>
+      `;
+    }
+
+    const photos = normalizeGalleryItems(visit.galeria, visit.titulo);
+    state.lightboxPhotos = photos;
+
+    let galleryContentHtml = '';
+    if (photos.length > 0) {
+      galleryContentHtml = `
+        <div class="visita-gallery-grid">
+          ${photos
+            .map(
+              (photo, idx) => `
+                <button
+                  type="button"
+                  class="visita-photo-item"
+                  data-lightbox-index="${idx}"
+                  aria-label="Ampliar fotografía ${idx + 1} de ${photos.length}: ${escapeHtml(photo.caption)}"
+                >
+                  <img src="${escapeHtml(photo.src)}" alt="${escapeHtml(photo.alt)}" loading="lazy" decoding="async" />
+                  <span class="visita-photo-caption">${escapeHtml(photo.caption)}</span>
+                </button>
+              `
+            )
+            .join('')}
+        </div>
+      `;
+    } else {
+      galleryContentHtml = `
+        <div class="visita-gallery-empty">
+          <div class="visita-gallery-empty-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.8" fill="none">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+              <circle cx="12" cy="13" r="4"></circle>
+            </svg>
+          </div>
+          <div>
+            <div class="visita-gallery-empty-title">Galería de imágenes próximamente</div>
+            <div class="visita-gallery-empty-desc">
+              Las fotografías de la visita técnica a <strong>${escapeHtml(visit.titulo)}</strong> se incorporarán próximamente en esta galería.
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    const mapsQuery = cleanText(visit.mapsQuery);
+    const mapsHref = getVisitaMapsExternalUrl(visit);
+    const detailLocationPillHtml = mapsHref
+      ? `<a
+           href="${escapeHtml(mapsHref)}"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="visita-detail-meta-pill visita-detail-place-link"
+           title="Ver ubicación en Google Maps"
+         >
+           <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+             <circle cx="12" cy="10" r="3"></circle>
+           </svg>
+           <span>${escapeHtml(visit.lugar)}</span>
+           <svg viewBox="0 0 24 24" width="11" height="11" stroke="currentColor" stroke-width="2.2" fill="none" aria-hidden="true">
+             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+             <polyline points="15 3 21 3 21 9"></polyline>
+             <line x1="10" y1="14" x2="21" y2="3"></line>
+           </svg>
+         </a>`
+      : `<span class="visita-detail-meta-pill">
+           <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+             <circle cx="12" cy="10" r="3"></circle>
+           </svg>
+           <span>${escapeHtml(visit.lugar)}</span>
+         </span>`;
+
+    let mapsSectionHtml = '';
+    if (mapsQuery || mapsHref) {
+      const embedSrc = mapsQuery ? buildGoogleMapsEmbedUrl(mapsQuery, 'k') : '';
+      mapsSectionHtml = `
+        <div class="visita-map-card" aria-label="Ubicación en Google Maps">
+          <div class="visita-map-header">
+            <div class="visita-map-title-group">
+              <div class="visita-map-title-row">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.1" fill="none" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <h2 class="visita-map-title">Ubicación en Google Maps</h2>
+              </div>
+              <p class="visita-map-address">${escapeHtml(visit.lugar || mapsQuery)}</p>
+            </div>
+
+            <div class="visita-map-controls">
+              ${
+                mapsQuery
+                  ? `<div class="visita-map-mode-switch" role="group" aria-label="Cambiar vista del mapa">
+                       <button
+                         type="button"
+                         class="visita-map-mode-btn active"
+                         data-map-view="k"
+                         aria-pressed="true"
+                         title="Vista satelital de las instalaciones logísticas"
+                       >
+                         Satélite
+                       </button>
+                       <button
+                         type="button"
+                         class="visita-map-mode-btn"
+                         data-map-view="m"
+                         aria-pressed="false"
+                         title="Vista de mapa vial"
+                       >
+                         Mapa
+                       </button>
+                     </div>`
+                  : ''
+              }
+              ${
+                mapsHref
+                  ? `<a
+                       href="${escapeHtml(mapsHref)}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="btn-secondary visita-map-open-btn"
+                       title="Abrir ubicación exacta en Google Maps"
+                     >
+                       <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+                         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                         <polyline points="15 3 21 3 21 9"></polyline>
+                         <line x1="10" y1="14" x2="21" y2="3"></line>
+                       </svg>
+                       <span>Abrir en Google Maps</span>
+                     </a>`
+                  : ''
+              }
+            </div>
+          </div>
+
+          ${
+            embedSrc
+              ? `<div class="visita-map-frame-wrap">
+                   <iframe
+                     id="visitaGoogleMapIframe"
+                     class="visita-map-iframe"
+                     src="${escapeHtml(embedSrc)}"
+                     data-maps-query="${escapeHtml(mapsQuery)}"
+                     width="100%"
+                     height="320"
+                     style="border: 0;"
+                     loading="lazy"
+                     referrerpolicy="no-referrer-when-downgrade"
+                     allowfullscreen
+                     title="Ubicación en Google Maps: ${escapeHtml(visit.titulo)}"
+                   ></iframe>
+                 </div>`
+              : ''
+          }
+        </div>
+      `;
+    }
+
+    dom.visitaDetailSection.innerHTML = `
+      <div class="visita-detail-hero" style="--visita-accent: ${escapeHtml(visit.accentColor || '#0284C7')};">
+        ${coverImgHtml}
+        <div class="banner-overlay"></div>
+        <div class="visita-detail-hero-content">
+          <div class="visita-detail-badges">
+            <span class="visita-num-badge">Visita Técnica N.° ${visit.numero}</span>
+            <span class="visita-detail-meta-pill">
+              <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+              <span>${escapeHtml(visit.generacionNombre || 'CTT Egresados 2026')} · ${escapeHtml(
+      visit.generacionPeriodo || '2025 – 2026'
+    )}</span>
+            </span>
+            <span class="visita-detail-meta-pill">
+              <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>${escapeHtml(visit.fechaTexto || visit.semestre)}</span>
+            </span>
+            ${detailLocationPillHtml}
+          </div>
+
+          <h1 class="visita-detail-title">${escapeHtml(visit.titulo)}</h1>
+          <p class="visita-detail-resumen">${escapeHtml(visit.resumen)}</p>
+
+          ${
+            relatedLinksHtml
+              ? `<div class="visita-detail-related">
+                   <span class="visita-detail-related-label">Asignaturas vinculadas:</span>
+                   ${relatedLinksHtml}
+                 </div>`
+              : ''
+          }
+        </div>
+      </div>
+
+      ${reportCardHtml}
+
+      ${mapsSectionHtml}
+
+      <div class="content-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <svg viewBox="0 0 24 24" width="19" height="19" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+            <span>Galería Fotográfica de la Visita</span>
+          </h2>
+          <span class="section-count">${photos.length} ${photos.length === 1 ? 'foto' : 'fotos'}</span>
+        </div>
+        ${galleryContentHtml}
+      </div>
+    `;
+  }
+
+  function openLightbox(index, triggerEl = null) {
+    const photos = state.lightboxPhotos || [];
+    if (!dom.galleryLightbox || photos.length === 0) return;
+
+    state.lastLightboxTriggerEl = triggerEl || document.activeElement;
+    state.lightboxIndex = Math.max(0, Math.min(Number(index) || 0, photos.length - 1));
+    updateLightboxSlide();
+
+    dom.galleryLightbox.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    if (dom.lightboxCloseBtn) {
+      dom.lightboxCloseBtn.focus();
+    }
+  }
+
+  function updateLightboxSlide() {
+    const photos = state.lightboxPhotos || [];
+    if (photos.length === 0) return;
+    const current = photos[state.lightboxIndex] || photos[0];
+    if (dom.lightboxImg) {
+      dom.lightboxImg.src = current.src;
+      dom.lightboxImg.alt = current.alt || current.caption || '';
+    }
+    if (dom.lightboxCaption) {
+      dom.lightboxCaption.textContent = current.caption || '';
+    }
+    if (dom.lightboxCounter) {
+      dom.lightboxCounter.textContent = `${state.lightboxIndex + 1} / ${photos.length}`;
+    }
+    const showNav = photos.length > 1;
+    if (dom.lightboxPrevBtn) dom.lightboxPrevBtn.classList.toggle('hidden', !showNav);
+    if (dom.lightboxNextBtn) dom.lightboxNextBtn.classList.toggle('hidden', !showNav);
+  }
+
+  function stepLightbox(delta) {
+    const photos = state.lightboxPhotos || [];
+    if (photos.length <= 1) return;
+    state.lightboxIndex = (state.lightboxIndex + delta + photos.length) % photos.length;
+    updateLightboxSlide();
+  }
+
+  function closeLightbox() {
+    if (!dom.galleryLightbox || dom.galleryLightbox.classList.contains('hidden')) return;
+    dom.galleryLightbox.classList.add('hidden');
+    if (dom.lightboxImg) dom.lightboxImg.src = '';
+    if (
+      dom.previewModal.classList.contains('hidden') &&
+      (!dom.instructivoModal || dom.instructivoModal.classList.contains('hidden'))
+    ) {
+      document.body.style.overflow = '';
+    }
+    if (
+      state.lastLightboxTriggerEl &&
+      document.body.contains(state.lastLightboxTriggerEl) &&
+      typeof state.lastLightboxTriggerEl.focus === 'function'
+    ) {
+      state.lastLightboxTriggerEl.focus();
+    }
+    state.lastLightboxTriggerEl = null;
+  }
+
   // --- Orquestador de Renderizado según Ruta Activa ---
 
   function renderCurrentRoute() {
@@ -1830,6 +3141,48 @@
     dom.contentSearchLoading.classList.add('hidden');
     dom.switchSearchModeBtn.classList.add('hidden');
     dom.emptyStateAltBtn.classList.add('hidden');
+    if (dom.visitasListSection) dom.visitasListSection.classList.add('hidden');
+    if (dom.visitaDetailSection) dom.visitaDetailSection.classList.add('hidden');
+
+    // CASO V1: Listado de Visitas Técnicas (#visitas-tecnicas)
+    if (state.routeType === 'visitas-list') {
+      dom.subjectBanner.classList.add('hidden');
+      dom.standardPageHeader.classList.add('hidden');
+      dom.academicFiltersBar.classList.add('hidden');
+      dom.fileFiltersSection.classList.add('hidden');
+      dom.activeFilterBanner.classList.add('hidden');
+      dom.subjectsSection.classList.add('hidden');
+      dom.foldersSection.classList.add('hidden');
+      dom.filesSection.classList.add('hidden');
+      dom.emptyState.classList.add('hidden');
+      dom.viewControlsGroup.classList.add('hidden');
+
+      if (dom.visitasListSection) {
+        dom.visitasListSection.classList.remove('hidden');
+      }
+      renderVisitasListView();
+      return;
+    }
+
+    // CASO V2: Detalle de Visita Técnica (#visita/<slug>)
+    if (state.routeType === 'visita-detail') {
+      dom.subjectBanner.classList.add('hidden');
+      dom.standardPageHeader.classList.add('hidden');
+      dom.academicFiltersBar.classList.add('hidden');
+      dom.fileFiltersSection.classList.add('hidden');
+      dom.activeFilterBanner.classList.add('hidden');
+      dom.subjectsSection.classList.add('hidden');
+      dom.foldersSection.classList.add('hidden');
+      dom.filesSection.classList.add('hidden');
+      dom.emptyState.classList.add('hidden');
+      dom.viewControlsGroup.classList.add('hidden');
+
+      if (dom.visitaDetailSection) {
+        dom.visitaDetailSection.classList.remove('hidden');
+      }
+      renderVisitaDetailView();
+      return;
+    }
 
     // CASO A: Vista de Semestre (#semestre/1..4 o #general)
     if (state.routeType === 'semester' || state.routeType === 'general') {
@@ -2550,6 +3903,14 @@
         state.selectedCategory = 'all';
         closeMobileSidebar();
         setRouteHash(`#materia/${slug}`);
+        return;
+      }
+
+      const visitaBtn = e.target.closest('[data-visita-slug]');
+      if (visitaBtn) {
+        const vSlug = visitaBtn.getAttribute('data-visita-slug');
+        closeMobileSidebar();
+        setRouteHash(`#visita/${vSlug}`);
       }
     });
 
@@ -2682,8 +4043,26 @@
       renderExplorerView();
     });
 
-    // Atajos de teclado '/' o Cmd/Ctrl+K y cierre con Esc
+    // Atajos de teclado '/' o Cmd/Ctrl+K, navegación del Lightbox y cierre con Esc
     document.addEventListener('keydown', (e) => {
+      if (dom.galleryLightbox && !dom.galleryLightbox.classList.contains('hidden')) {
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          closeLightbox();
+          return;
+        }
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          stepLightbox(-1);
+          return;
+        }
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          stepLightbox(1);
+          return;
+        }
+      }
+
       if (e.key === 'Escape') {
         if (dom.instructivoModal && !dom.instructivoModal.classList.contains('hidden')) {
           e.preventDefault();
@@ -2707,6 +4086,7 @@
 
       if ((e.key === '/' && !isInputFocused) || ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k')) {
         if (
+          (dom.galleryLightbox && !dom.galleryLightbox.classList.contains('hidden')) ||
           (dom.instructivoModal && !dom.instructivoModal.classList.contains('hidden')) ||
           !dom.previewModal.classList.contains('hidden')
         ) {
@@ -2786,6 +4166,18 @@
         return;
       }
 
+      const visitaTag = e.target.closest('[data-jump-visita]');
+      if (visitaTag) {
+        e.stopPropagation();
+        const vSlug = visitaTag.getAttribute('data-jump-visita');
+        if (vSlug && vSlug !== '__list__') {
+          setRouteHash(`#visita/${vSlug}`);
+        } else {
+          setRouteHash('#visitas-tecnicas');
+        }
+        return;
+      }
+
       const folderTag = e.target.closest('[data-jump-folder]');
       if (folderTag) {
         e.stopPropagation();
@@ -2821,6 +4213,131 @@
         }
       }
     });
+
+    // Delegación en Listado de Visitas Técnicas (#visitas-tecnicas)
+    if (dom.visitasListSection) {
+      dom.visitasListSection.addEventListener('click', (e) => {
+        const stopLink = e.target.closest('[data-stop-prop]');
+        if (stopLink) {
+          e.stopPropagation();
+          return;
+        }
+
+        const genBtn = e.target.closest('[data-select-generacion]');
+        if (genBtn) {
+          const genId = genBtn.getAttribute('data-select-generacion');
+          if (genId && state.generacionesById.has(genId)) {
+            state.activeGeneracionId = genId;
+            renderVisitasListView();
+          }
+          return;
+        }
+
+        const visitaCard = e.target.closest('[data-open-visita]');
+        if (visitaCard) {
+          setRouteHash(`#visita/${visitaCard.getAttribute('data-open-visita')}`);
+          return;
+        }
+
+        const favBtn = e.target.closest('[data-fav-file]');
+        if (favBtn) {
+          e.stopPropagation();
+          toggleFavorite(favBtn.getAttribute('data-fav-file'));
+          return;
+        }
+
+        const fileCard = e.target.closest('[data-preview-file]');
+        if (fileCard) {
+          openPreviewModal(fileCard.getAttribute('data-preview-file'), fileCard);
+        }
+      });
+
+      dom.visitasListSection.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          const visitaCard = e.target.closest('[data-open-visita]');
+          if (visitaCard && e.target === visitaCard) {
+            e.preventDefault();
+            setRouteHash(`#visita/${visitaCard.getAttribute('data-open-visita')}`);
+          }
+        }
+      });
+    }
+
+    // Delegación en Detalle de Visita Técnica (#visita/<slug>)
+    if (dom.visitaDetailSection) {
+      dom.visitaDetailSection.addEventListener('click', (e) => {
+        const mapViewBtn = e.target.closest('[data-map-view]');
+        if (mapViewBtn) {
+          const viewType = mapViewBtn.getAttribute('data-map-view') === 'm' ? 'm' : 'k';
+          const iframe = dom.visitaDetailSection.querySelector('#visitaGoogleMapIframe');
+          if (iframe) {
+            const q = iframe.getAttribute('data-maps-query') || '';
+            const nextSrc = buildGoogleMapsEmbedUrl(q, viewType);
+            if (nextSrc && iframe.src !== nextSrc) {
+              iframe.src = nextSrc;
+            }
+          }
+          const switchGroup = mapViewBtn.closest('.visita-map-mode-switch');
+          if (switchGroup) {
+            switchGroup.querySelectorAll('[data-map-view]').forEach((btn) => {
+              const isActive = btn === mapViewBtn;
+              btn.classList.toggle('active', isActive);
+              btn.setAttribute('aria-pressed', String(isActive));
+            });
+          }
+          return;
+        }
+
+        const previewBtn = e.target.closest('[data-preview-file]');
+        if (previewBtn) {
+          openPreviewModal(previewBtn.getAttribute('data-preview-file'), previewBtn);
+          return;
+        }
+
+        const favBtn = e.target.closest('[data-fav-file]');
+        if (favBtn) {
+          e.stopPropagation();
+          toggleFavorite(favBtn.getAttribute('data-fav-file'));
+          return;
+        }
+
+        const subjBtn = e.target.closest('[data-open-subject]');
+        if (subjBtn) {
+          state.selectedCategory = 'all';
+          setRouteHash(`#materia/${subjBtn.getAttribute('data-open-subject')}`);
+          return;
+        }
+
+        const photoBtn = e.target.closest('[data-lightbox-index]');
+        if (photoBtn) {
+          openLightbox(Number(photoBtn.getAttribute('data-lightbox-index')), photoBtn);
+        }
+      });
+    }
+
+    // Controles del Lightbox de Galería Fotográfica
+    if (dom.lightboxCloseBtn) {
+      dom.lightboxCloseBtn.addEventListener('click', closeLightbox);
+    }
+    if (dom.lightboxPrevBtn) {
+      dom.lightboxPrevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        stepLightbox(-1);
+      });
+    }
+    if (dom.lightboxNextBtn) {
+      dom.lightboxNextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        stepLightbox(1);
+      });
+    }
+    if (dom.galleryLightbox) {
+      dom.galleryLightbox.addEventListener('click', (e) => {
+        if (e.target === dom.galleryLightbox || e.target === dom.lightboxStage) {
+          closeLightbox();
+        }
+      });
+    }
 
     // Modal
     dom.modalCloseBtn.addEventListener('click', closePreviewModal);
@@ -3148,14 +4665,25 @@
 
     try {
       const cacheBuster = Date.now();
-      const [catalogRes, configRes] = await Promise.all([
+      const [catalogRes, configRes, visitasRes] = await Promise.all([
         fetch(`./catalogo.json?t=${cacheBuster}`, { cache: 'no-store' }).catch(() => null),
         fetch(`./materias-config.json?t=${cacheBuster}`, { cache: 'no-store' }).catch(() => null),
+        fetch(`./visitas-config.json?t=${cacheBuster}`, { cache: 'no-store' }).catch(() => null),
       ]);
 
       if (configRes && configRes.ok) {
         const configData = await configRes.json();
         buildMateriaLookup(configData);
+      }
+      if (visitasRes && visitasRes.ok) {
+        try {
+          const visitasData = await visitasRes.json();
+          buildVisitasConfig(visitasData);
+        } catch {
+          buildVisitasConfig(null);
+        }
+      } else {
+        buildVisitasConfig(null);
       }
       applyPortalDocumentControlMeta();
 
