@@ -188,6 +188,7 @@
     dom.metricMainSubjects = document.getElementById('metricMainSubjects');
     dom.metricSemesters = document.getElementById('metricSemesters');
     dom.metricTotalFiles = document.getElementById('metricTotalFiles');
+    dom.journeyAllFilesText = document.getElementById('journeyAllFilesText');
     dom.semesterJourneyGrid = document.getElementById('semesterJourneyGrid');
 
     // Explorer View
@@ -726,10 +727,18 @@
     state.catalog.indexedRootFolders = rootFolders;
 
     const mainSubjectsCount = rootFolders.length;
-    const totalFiles = data.totalFiles || state.allFiles.length;
+    const totalFiles = Math.max(Number(data.totalFiles) || 0, state.allFiles.length);
     dom.totalFoldersBadge.textContent = mainSubjectsCount;
     dom.totalFilesBadge.textContent = totalFiles;
     dom.catalogSummaryText.textContent = `${mainSubjectsCount} materias · ${totalFiles} archivos`;
+    if (dom.metricTotalFiles) {
+      dom.metricTotalFiles.textContent = totalFiles;
+    }
+    const journeySpan =
+      dom.journeyAllFilesText || document.querySelector('.journey-all-files-link span');
+    if (journeySpan) {
+      journeySpan.textContent = `Ver los ${totalFiles} archivos`;
+    }
   }
 
   // --- Control del Selector de Modo de Búsqueda Superior (Título | Contenido) ---
@@ -1158,9 +1167,15 @@
       dom.welcomeHeroImg.src = portalCfg.heroImage;
     }
 
+    const totalFiles = Math.max(Number(state.catalog && state.catalog.totalFiles) || 0, state.allFiles.length);
     dom.metricMainSubjects.textContent = rootFolders.length;
     dom.metricSemesters.textContent = semestresCfg.length || 4;
-    dom.metricTotalFiles.textContent = state.catalog.totalFiles || state.allFiles.length;
+    dom.metricTotalFiles.textContent = totalFiles;
+    const journeySpan =
+      dom.journeyAllFilesText || document.querySelector('.journey-all-files-link span');
+    if (journeySpan) {
+      journeySpan.textContent = `Ver los ${totalFiles} archivos`;
+    }
 
     const semAccents = { 1: '#2563EB', 2: '#0284C7', 3: '#10B981', 4: '#F59E0B' };
     const cardsHtml = [];
@@ -1189,7 +1204,6 @@
           <div>
             <div class="journey-card-top">
               <span class="journey-year-pill ${yearBadgeClass}">${cfgSem.anio}.° Año</span>
-              <span class="journey-stats-pill">${semSubjects.length} materias · ${semFilesCount} archivos</span>
             </div>
             <h3 class="journey-card-title">${escapeHtml(cfgSem.label)}</h3>
             <p class="journey-card-desc">${escapeHtml(cfgSem.shortDesc)}</p>
@@ -1238,17 +1252,24 @@
         aria-label="Explorar Libros y Recursos Generales"
       >
         <div style="flex: 1;">
-          <div class="journey-card-top" style="justify-content: flex-start; gap: 12px;">
+          <div class="journey-card-top">
             <span class="journey-year-pill acad-anio-general">Recursos Transversales</span>
-            <span class="journey-stats-pill">${generalSubjects.length} ${generalSubjects.length === 1 ? 'colección' : 'colecciones'} · ${generalFilesCount} archivos</span>
           </div>
           <h3 class="journey-card-title">Libros y Recursos Generales</h3>
           <p class="journey-card-desc">${escapeHtml(generalDesc)}</p>
         </div>
 
         <div class="journey-card-footer">
+          <div class="journey-counts-group">
+            <span class="journey-count-chip">
+              <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              </svg>
+              <span>${generalFilesCount} recursos</span>
+            </span>
+          </div>
           <span class="journey-cta-text">
-            <span>Explorar biblioteca (${generalFilesCount} libros y manuales)</span>
+            <span>Explorar biblioteca</span>
             <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.2" fill="none">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
@@ -2956,7 +2977,10 @@
     if (localValid && cachedValid) {
       const localMs = getCatalogTimestampMs(null, localCatalog);
       const cachedMs = getCatalogTimestampMs(cachedEntry.updatedAt, cachedEntry.catalog);
-      if (cachedMs > localMs) {
+      const cachedFiles = Number(cachedEntry.catalog.totalFiles) || 0;
+      const localFiles = Number(localCatalog.totalFiles) || 0;
+      // Priorizar el catálogo sincronizado desde Apps Script si tiene fecha posterior o más archivos que la copia estática
+      if (cachedMs >= localMs || cachedFiles > localFiles) {
         return {
           catalog: cachedEntry.catalog,
           updatedAt: getCatalogUpdatedAtIso(cachedEntry.updatedAt, cachedEntry.catalog),
