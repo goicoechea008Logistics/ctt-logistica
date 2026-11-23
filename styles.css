@@ -3046,6 +3046,61 @@ select:focus-visible {
   background-color: var(--bg-surface-hover);
 }
 
+.doc-footer-authorship {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.doc-footer-author-line {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.doc-footer-author-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 4px;
+  border-radius: 4px;
+  color: var(--brand-primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.doc-footer-author-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  background-color: var(--bg-surface-hover);
+}
+
+.doc-footer-author-link .linkedin-icon {
+  flex-shrink: 0;
+  color: #0a66c2;
+}
+
+[data-theme="dark"] .doc-footer-author-link .linkedin-icon {
+  color: #60a5fa;
+}
+
+.doc-footer-disclaimer {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  max-width: 680px;
+  line-height: 1.45;
+}
+
 /* ==========================================================================
    Ventana Modal: Instructivo de Uso del Portal (INS-WEB-01)
    ========================================================================== */

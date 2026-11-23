@@ -257,7 +257,7 @@
     dom.emptyStateAltBtn = document.getElementById('emptyStateAltBtn');
     dom.emptyStateActionBtn = document.getElementById('emptyStateActionBtn');
 
-    // Document Control Footer
+    // Document Control Footer & Authorship
     dom.footerVersionText = document.getElementById('footerVersionText');
     dom.footerSyncDateWrap = document.getElementById('footerSyncDateWrap');
     dom.footerSyncDateText = document.getElementById('footerSyncDateText');
@@ -265,6 +265,9 @@
     dom.footerInstructivoCode = document.getElementById('footerInstructivoCode');
     dom.footerFeedbackWrap = document.getElementById('footerFeedbackWrap');
     dom.footerFeedbackLink = document.getElementById('footerFeedbackLink');
+    dom.footerCopyrightYear = document.getElementById('footerCopyrightYear');
+    dom.footerAuthorLink = document.getElementById('footerAuthorLink');
+    dom.footerAuthorName = document.getElementById('footerAuthorName');
 
     // Instructivo Modal (INS-WEB-01)
     dom.instructivoModal = document.getElementById('instructivoModal');
@@ -2324,6 +2327,10 @@
     const code = cleanText(portal.instructivoCode) || 'INS-WEB-01';
     const rev = cleanText(portal.instructivoRev) || 'Rev. 01';
     const feedbackUrl = cleanText(portal.feedbackUrl);
+    const authorName = cleanText(portal.authorName) || 'Matías Goicoechea';
+    const authorUrl =
+      cleanText(portal.authorUrl) || 'https://www.linkedin.com/in/matías-goicoechea-albernaz';
+    const copyrightYear = cleanText(portal.copyrightYear) || '2026';
 
     if (dom.footerVersionText) {
       dom.footerVersionText.textContent = `CTT Logística · Portal v${version}`;
@@ -2336,6 +2343,17 @@
     }
     if (dom.instructivoFooterMeta) {
       dom.instructivoFooterMeta.textContent = `${code} · ${rev} · CTT Logística v${version}`;
+    }
+
+    if (dom.footerCopyrightYear) {
+      dom.footerCopyrightYear.textContent = copyrightYear;
+    }
+    if (dom.footerAuthorName) {
+      dom.footerAuthorName.textContent = authorName;
+    }
+    if (dom.footerAuthorLink) {
+      dom.footerAuthorLink.href = authorUrl;
+      dom.footerAuthorLink.setAttribute('aria-label', `Perfil de LinkedIn de ${authorName}`);
     }
 
     if (feedbackUrl) {

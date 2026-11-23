@@ -9,7 +9,10 @@
     "version": "1.1",
     "instructivoCode": "INS-WEB-01",
     "instructivoRev": "Rev. 01",
-    "feedbackUrl": "https://forms.gle/rCHMDQ55ZqyNx99g7"
+    "feedbackUrl": "https://forms.gle/rCHMDQ55ZqyNx99g7",
+    "authorName": "Matías Goicoechea",
+    "authorUrl": "https://www.linkedin.com/in/matías-goicoechea-albernaz",
+    "copyrightYear": "2026"
   },
   "semestres": [
     {
