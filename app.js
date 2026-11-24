@@ -413,9 +413,14 @@
     dom.footerCopyrightYear = document.getElementById('footerCopyrightYear');
     dom.footerAuthorLink = document.getElementById('footerAuthorLink');
     dom.footerAuthorName = document.getElementById('footerAuthorName');
+    dom.footerPoliticaBtn = document.getElementById('footerPoliticaBtn');
 
     // Instructivo Modal (INS-WEB-01)
     dom.instructivoModal = document.getElementById('instructivoModal');
+    dom.instructivoModalBody = document.querySelector('#instructivoModal .instructivo-modal-body');
+    dom.politicaAcademicaSection = document.getElementById('politica-academica');
+    dom.politicaContactEmail = document.getElementById('politicaContactEmail');
+    dom.politicaContactEmailText = document.getElementById('politicaContactEmailText');
     dom.instructivoCodeBadge = document.getElementById('instructivoCodeBadge');
     dom.instructivoCloseBtn = document.getElementById('instructivoCloseBtn');
     dom.instructivoOkBtn = document.getElementById('instructivoOkBtn');
@@ -3648,13 +3653,23 @@
     state.lastPreviewTriggerEl = null;
   }
 
-  function openInstructivoModal(triggerEl = null) {
+  function openInstructivoModal(triggerEl = null, scrollTargetId = null) {
     if (!dom.instructivoModal) return;
     state.lastInstructivoTriggerEl = triggerEl || document.activeElement;
     dom.instructivoModal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
+
+    const targetEl = scrollTargetId ? document.getElementById(scrollTargetId) : null;
     if (dom.instructivoCloseBtn) {
-      dom.instructivoCloseBtn.focus();
+      dom.instructivoCloseBtn.focus({ preventScroll: Boolean(targetEl) });
+    }
+
+    if (targetEl) {
+      requestAnimationFrame(() => {
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    } else if (dom.instructivoModalBody) {
+      dom.instructivoModalBody.scrollTop = 0;
     }
   }
 
@@ -3717,6 +3732,16 @@
     } else {
       if (dom.footerFeedbackWrap) dom.footerFeedbackWrap.classList.add('hidden');
       if (dom.instructivoFeedbackWrap) dom.instructivoFeedbackWrap.classList.add('hidden');
+    }
+
+    const contactEmail = cleanText(portal.contactEmail);
+    if (contactEmail && dom.politicaContactEmail) {
+      dom.politicaContactEmail.href = `mailto:${encodeURIComponent(
+        contactEmail
+      )}?subject=${encodeURIComponent('CTT Logística — Créditos o retiro de material')}`;
+      if (dom.politicaContactEmailText) {
+        dom.politicaContactEmailText.textContent = contactEmail;
+      }
     }
   }
 
@@ -3835,6 +3860,12 @@
     if (dom.footerInstructivoBtn) {
       dom.footerInstructivoBtn.addEventListener('click', (e) => {
         openInstructivoModal(e.currentTarget);
+      });
+    }
+
+    if (dom.footerPoliticaBtn) {
+      dom.footerPoliticaBtn.addEventListener('click', (e) => {
+        openInstructivoModal(e.currentTarget, 'politica-academica');
       });
     }
 

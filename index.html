@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=2.3" />
+  <link rel="stylesheet" href="styles.css?v=2.4" />
 </head>
 <body>
   <!-- Top Navigation Bar -->
@@ -651,8 +651,16 @@
             </a>
             <span>— Diseño, desarrollo y organización del portal.</span>
           </p>
-          <p class="doc-footer-disclaimer">
-            Los documentos enlazados pertenecen a sus respectivos autores y se comparten únicamente como apoyo al estudio.
+          <p class="doc-footer-disclaimer doc-footer-ip-notice">
+            <strong>Propiedad Intelectual y Uso Académico:</strong> Los apuntes, presentaciones y guías publicados pertenecen exclusivamente a sus respectivos docentes y autores originales. Iniciativa estudiantil independiente sin fines de lucro (CTT Egresados 2026) para la comunidad de la Tecnicatura en Logística — Escuela Técnica Superior Las Piedras (ANEP / UTU).
+            <button
+              id="footerPoliticaBtn"
+              class="doc-footer-policy-link"
+              type="button"
+              title="Leer Política Académica, Integridad y Derechos de Autor"
+            >
+              Derechos de autor y retiro de material
+            </button>
           </p>
         </div>
       </footer>
@@ -781,6 +789,92 @@
             </div>
           </section>
         </div>
+
+        <!-- Política Académica, Integridad y Derechos de Autor -->
+        <section
+          id="politica-academica"
+          class="politica-academica-section"
+          aria-labelledby="politicaAcademicaTitle"
+        >
+          <div class="politica-header">
+            <div class="politica-header-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <div>
+              <span class="politica-kicker">Marco de Buenas Prácticas</span>
+              <h3 id="politicaAcademicaTitle" class="politica-title">Política Académica, Integridad y Derechos de Autor</h3>
+            </div>
+          </div>
+
+          <ol class="politica-list">
+            <li class="politica-item">
+              <span class="politica-num" aria-hidden="true">1</span>
+              <div class="politica-item-body">
+                <h4 class="politica-item-title">Naturaleza y alcance institucional</h4>
+                <p class="politica-item-text">
+                  Este portal es una iniciativa estudiantil independiente, abierta y sin fines de lucro impulsada por <strong>CTT Egresados 2026</strong> (Escuela Técnica Superior Las Piedras) para la comunidad de la Tecnicatura en Logística. No constituye un canal institucional oficial de <strong>ANEP / UTU</strong> ni sustituye a la plataforma <strong>CREA</strong> ni a las comunicaciones formales de cada cátedra.
+                </p>
+              </div>
+            </li>
+
+            <li class="politica-item">
+              <span class="politica-num" aria-hidden="true">2</span>
+              <div class="politica-item-body">
+                <h4 class="politica-item-title">Propiedad intelectual y reconocimiento docente</h4>
+                <p class="politica-item-text">
+                  Todos los apuntes, presentaciones, guías prácticas y bibliografía enlazada pertenecen exclusivamente a sus respectivos docentes, autores originales y editoriales, en cumplimiento de la <strong>Ley N.° 9.739</strong> de Derechos de Autor. El repositorio tiene un fin estrictamente educativo y de apoyo al estudio; queda expresamente prohibido cualquier uso o redistribución comercial.
+                </p>
+              </div>
+            </li>
+
+            <li class="politica-item">
+              <span class="politica-num" aria-hidden="true">3</span>
+              <div class="politica-item-body">
+                <h4 class="politica-item-title">Integridad académica</h4>
+                <p class="politica-item-text">
+                  No se alojan parciales vigentes, exámenes, pautas oficiales de corrección ni trabajos resueltos destinados a la copia. Los informes publicados en la sección <strong>Visitas Técnicas</strong> constituyen producción estudiantil compartida únicamente como material de referencia académica.
+                </p>
+              </div>
+            </li>
+
+            <li class="politica-item">
+              <span class="politica-num" aria-hidden="true">4</span>
+              <div class="politica-item-body">
+                <h4 class="politica-item-title">Vigencia documental</h4>
+                <p class="politica-item-text">
+                  El material reunido corresponde al cursado de la cohorte <strong>2025–2026</strong>. Se recomienda verificar siempre la normativa vigente y las actualizaciones dictadas por cada docente, en particular en materias legales, aduaneras y de comercio exterior.
+                </p>
+              </div>
+            </li>
+
+            <li class="politica-item politica-item-highlight">
+              <span class="politica-num" aria-hidden="true">5</span>
+              <div class="politica-item-body">
+                <h4 class="politica-item-title">Actualización de créditos y retiro inmediato</h4>
+                <p class="politica-item-text">
+                  Si eres docente, autor o titular de derechos y deseas solicitar la corrección de créditos, la actualización de una versión o la <strong>baja inmediata</strong> de cualquier documento alojado o enlazado, contáctanos directamente por correo electrónico:
+                </p>
+                <div class="politica-contact-row">
+                  <a
+                    id="politicaContactEmail"
+                    href="mailto:tu-correo@ejemplo.com?subject=CTT%20Log%C3%ADstica%20%E2%80%94%20Cr%C3%A9ditos%20o%20retiro%20de%20material"
+                    class="politica-mailto-link"
+                  >
+                    <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                      <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    <span id="politicaContactEmailText">tu-correo@ejemplo.com</span>
+                  </a>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </section>
       </div>
 
       <footer class="modal-footer instructivo-modal-footer">
@@ -901,6 +995,6 @@
     </button>
   </div>
 
-  <script src="app.js?v=2.3"></script>
+  <script src="app.js?v=2.4"></script>
 </body>
 </html>

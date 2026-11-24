@@ -3191,8 +3191,39 @@ select:focus-visible {
 .doc-footer-disclaimer {
   font-size: 0.72rem;
   color: var(--text-muted);
-  max-width: 680px;
-  line-height: 1.45;
+  max-width: 780px;
+  line-height: 1.55;
+}
+
+.doc-footer-ip-notice strong {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.doc-footer-policy-link {
+  display: inline;
+  margin-left: 6px;
+  padding: 1px 5px;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  color: var(--brand-primary);
+  font-size: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: rgba(37, 99, 235, 0.45);
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+.doc-footer-policy-link:hover {
+  background-color: var(--bg-surface-hover);
+  text-decoration-color: currentColor;
+}
+
+[data-theme="dark"] .doc-footer-policy-link {
+  text-decoration-color: rgba(96, 165, 250, 0.45);
 }
 
 /* ==========================================================================
@@ -3353,6 +3384,175 @@ select:focus-visible {
   font-size: 0.76rem;
   font-weight: 600;
   color: var(--text-muted);
+}
+
+/* Sección: Política Académica, Integridad y Derechos de Autor (#politica-academica) */
+.politica-academica-section {
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border-strong);
+  scroll-margin-top: 14px;
+}
+
+.politica-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.politica-header-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: var(--brand-soft);
+  color: var(--brand-soft-text);
+  border: 1px solid rgba(37, 99, 235, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .politica-header-icon {
+  border-color: rgba(96, 165, 250, 0.28);
+}
+
+.politica-kicker {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--brand-primary);
+  margin-bottom: 2px;
+}
+
+.politica-title {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 1.06rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.politica-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.politica-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 13px 15px;
+  border-radius: var(--radius-md);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-xs);
+}
+
+.politica-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-strong);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.politica-item-body {
+  min-width: 0;
+  flex: 1;
+}
+
+.politica-item-title {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.politica-item-text {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+/* Resalte discreto para el punto 5 (Canal directo de créditos y retiro inmediato) */
+.politica-item-highlight {
+  border-left: 4px solid var(--brand-primary);
+  border-top-color: rgba(37, 99, 235, 0.22);
+  border-right-color: rgba(37, 99, 235, 0.22);
+  border-bottom-color: rgba(37, 99, 235, 0.22);
+  background-color: rgba(37, 99, 235, 0.06);
+}
+
+[data-theme="dark"] .politica-item-highlight {
+  border-left-color: #3b82f6;
+  border-top-color: rgba(59, 130, 246, 0.28);
+  border-right-color: rgba(59, 130, 246, 0.28);
+  border-bottom-color: rgba(59, 130, 246, 0.28);
+  background-color: rgba(59, 130, 246, 0.12);
+}
+
+.politica-item-highlight .politica-num {
+  background-color: var(--brand-primary);
+  border-color: var(--brand-primary);
+  color: #ffffff;
+}
+
+.politica-contact-row {
+  margin-top: 9px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.politica-mailto-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-surface);
+  border: 1px solid rgba(37, 99, 235, 0.32);
+  color: var(--brand-primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.politica-mailto-link:hover {
+  background-color: var(--brand-primary);
+  border-color: var(--brand-primary);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .politica-mailto-link {
+  background-color: rgba(15, 23, 42, 0.6);
+  border-color: rgba(96, 165, 250, 0.35);
+  color: #93c5fd;
+}
+
+[data-theme="dark"] .politica-mailto-link:hover {
+  background-color: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
 }
 
 /* ==========================================================================
