@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=2.5" />
+  <link rel="stylesheet" href="styles.css?v=2.7" />
 </head>
 <body>
   <!-- Top Navigation Bar -->
@@ -237,17 +237,9 @@
            VIEW 1: PÁGINA DE BIENVENIDA (#inicio)
            ==================================================================== -->
       <div id="welcomeView" class="welcome-view hidden">
-        <!-- Full-width Welcome Hero Banner -->
+        <!-- Split Two-Column Welcome Hero Banner -->
         <section id="welcomeHero" class="welcome-hero" style="--banner-accent: #2563eb;">
-          <img
-            id="welcomeHeroImg"
-            src="assets/banners/hero-logistica.jpg"
-            alt=""
-            class="banner-bg-img"
-            onerror="this.remove()"
-          />
-          <div class="banner-overlay"></div>
-
+          <!-- Left Column: Institutional Navy Content, Search & Metrics -->
           <div class="welcome-hero-content">
             <div class="hero-pill-badge">
               <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.2" fill="none">
@@ -259,7 +251,7 @@
 
             <h1 id="portalTitle" class="hero-title">Tecnicatura en Logística</h1>
             <p id="portalWelcomeDesc" class="hero-description">
-              Este espacio reúne y organiza de forma abierta los apuntes, guías prácticas, normativas y bibliografía de los cuatro semestres de la Tecnicatura en Logística.
+              Repositorio abierto de apuntes, guías prácticas, normativas y bibliografía de los cuatro semestres para acompañar el estudio diario de la comunidad estudiantil.
             </p>
 
             <!-- Prominent Hero Full-Text Content Search Bar -->
@@ -311,6 +303,18 @@
                 <span class="metric-label">Recursos de Estudio</span>
               </div>
             </div>
+          </div>
+
+          <!-- Right Column: Clear Institutional UTU Photograph -->
+          <div class="welcome-hero-media">
+            <img
+              id="welcomeHeroImg"
+              src="assets/banners/hero-logistica.jpg"
+              alt="Fachada de la Escuela Técnica Superior Las Piedras (ANEP / UTU)"
+              class="welcome-hero-photo"
+              onerror="this.remove()"
+            />
+            <span class="hero-photo-badge">ETS Las Piedras · ANEP / UTU</span>
           </div>
         </section>
 
