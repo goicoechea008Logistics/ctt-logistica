@@ -896,13 +896,58 @@ body.sidebar-collapsed .sidebar {
 .catalog-meta {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 .catalog-sync-date {
   font-size: 0.69rem;
   color: var(--text-muted);
   opacity: 0.85;
+}
+
+/* Contadores globales sobrios de Visitas y Descargas (Barra lateral y Pie de página) */
+.portal-metrics {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.portal-metric-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.portal-metric-item svg {
+  color: var(--text-muted);
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+
+.portal-metric-item strong {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.portal-metric-sep {
+  color: var(--border-strong);
+  user-select: none;
+}
+
+.sidebar-metrics {
+  margin-top: 1px;
+}
+
+.footer-metrics {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+  font-size: 0.74rem;
 }
 
 /* ==========================================================================

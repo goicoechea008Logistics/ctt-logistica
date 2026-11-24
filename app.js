@@ -19,6 +19,11 @@
 
   const CATALOG_SYNC_TIMEOUT_MS = 10000;
 
+  const METRICS_API_URL =
+    'https://script.google.com/macros/s/AKfycbwEU2l9gATsWxT2ei8yrWoudMp7z7fdn1615l275za9Fn_uTRxwxUpbSsFl_WP94gjSwQ/exec';
+  const VISIT_COUNTED_SESSION_KEY = 'ctt_visit_counted';
+  const METRICS_TIMEOUT_MS = 10000;
+
   const DEFAULT_CONTENT_SEARCH_API_URL =
     'https://script.google.com/macros/s/AKfycbxVGYNvDqGse-nHCC0WhSotTGdGHs58SfN9DVldmv-ZrLL7wS0SAgjpsTnYQCNxW7Y/exec';
 
@@ -264,6 +269,13 @@
     ignoreNextHashChange: false,
     activeCatalogUpdatedAt: '',
     activeCatalogFingerprint: '',
+
+    // Métricas globales de visitas y descargas (Google Apps Script)
+    metricsVisits: null,
+    metricsDownloads: null,
+    metricsAvailable: false,
+    lastTrackedDownloadKey: '',
+    lastTrackedDownloadAt: 0,
   };
 
   // --- Referencias al DOM ---
@@ -299,6 +311,12 @@
     dom.folderTree = document.getElementById('folderTree');
     dom.catalogSummaryText = document.getElementById('catalogSummaryText');
     dom.catalogSyncDateText = document.getElementById('catalogSyncDateText');
+    dom.sidebarMetrics = document.getElementById('sidebarMetrics');
+    dom.sidebarVisitsCount = document.getElementById('sidebarVisitsCount');
+    dom.sidebarDownloadsCount = document.getElementById('sidebarDownloadsCount');
+    dom.footerMetrics = document.getElementById('footerMetrics');
+    dom.footerVisitsCount = document.getElementById('footerVisitsCount');
+    dom.footerDownloadsCount = document.getElementById('footerDownloadsCount');
 
     dom.loadingState = document.getElementById('loadingState');
 
@@ -2370,6 +2388,7 @@
                   href="${escapeHtml(file.downloadUrl)}"
                   class="card-action-link"
                   data-stop-prop="true"
+                  data-track-download="${escapeHtml(file.displayName)}"
                   target="_blank"
                   rel="noopener noreferrer"
                   title="Descargar (${escapeHtml(file.sizeFormatted)})"
@@ -2774,6 +2793,7 @@
               target="_blank"
               rel="noopener noreferrer"
               class="btn-secondary"
+              data-track-download="${escapeHtml(file.displayName)}"
               title="Abrir documento original en Google Drive en una pestaña nueva"
             >
               <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
@@ -2789,6 +2809,7 @@
               target="_blank"
               rel="noopener noreferrer"
               class="btn-secondary"
+              data-track-download="${escapeHtml(file.displayName)}"
               title="Descargar informe PDF"
             >
               <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.2" fill="none" aria-hidden="true">
@@ -3617,6 +3638,11 @@
     dom.modalFooterDownloadLink.href = file.downloadUrl;
     dom.modalFooterDriveLink.href = file.driveUrl;
 
+    dom.modalDownloadBtn.setAttribute('data-track-download', file.displayName);
+    dom.modalDriveBtn.setAttribute('data-track-download', file.displayName);
+    dom.modalFooterDownloadLink.setAttribute('data-track-download', file.displayName);
+    dom.modalFooterDriveLink.setAttribute('data-track-download', file.displayName);
+
     updateModalFavButton(file.id);
 
     dom.iframeLoader.classList.remove('hidden');
@@ -4389,6 +4415,28 @@
         dom.iframeLoader.classList.add('hidden');
       }
     });
+
+    // Delegación global en fase de captura para registrar cualquier descarga o apertura de archivos
+    document.addEventListener(
+      'click',
+      (e) => {
+        const trigger = e.target.closest(
+          '[data-track-download], a[download], a[href*="drive.google.com/uc"], a[href*="drive.google.com/file/d/"]'
+        );
+        if (!trigger) return;
+
+        const rawName =
+          trigger.getAttribute('data-track-download') ||
+          (dom.modalFileTitle && trigger.closest('#previewModal') ? dom.modalFileTitle.textContent : '') ||
+          trigger.getAttribute('aria-label') ||
+          trigger.getAttribute('title') ||
+          trigger.textContent;
+
+        const fileName = cleanText(rawName).replace(/^Descargar\s+/i, '') || 'Archivo';
+        trackFileDownload(fileName);
+      },
+      true
+    );
   }
 
   function setViewMode(mode) {
@@ -4682,6 +4730,129 @@
     }
   }
 
+  // --- Métricas Globales de Visitas y Descargas (Google Apps Script) ---
+
+  function parseMetricsPayload(payload) {
+    if (!payload || typeof payload !== 'object') return null;
+    const rawVisits = payload.visitas ?? payload.visits;
+    const rawDownloads = payload.descargas ?? payload.downloads;
+    const visits = Number(rawVisits);
+    const downloads = Number(rawDownloads);
+    if (!Number.isFinite(visits) || !Number.isFinite(downloads) || visits < 0 || downloads < 0) {
+      return null;
+    }
+    return {
+      visitas: Math.floor(visits),
+      descargas: Math.floor(downloads),
+    };
+  }
+
+  function hidePortalMetrics() {
+    if (dom.sidebarMetrics) dom.sidebarMetrics.classList.add('hidden');
+    if (dom.footerMetrics) dom.footerMetrics.classList.add('hidden');
+  }
+
+  function renderPortalMetrics(visitas, descargas) {
+    if (!Number.isFinite(visitas) || !Number.isFinite(descargas) || visitas < 0 || descargas < 0) {
+      hidePortalMetrics();
+      return;
+    }
+
+    const formattedVisits = Math.floor(visitas).toLocaleString('es-UY');
+    const formattedDownloads = Math.floor(descargas).toLocaleString('es-UY');
+
+    if (dom.sidebarVisitsCount) dom.sidebarVisitsCount.textContent = formattedVisits;
+    if (dom.sidebarDownloadsCount) dom.sidebarDownloadsCount.textContent = formattedDownloads;
+    if (dom.footerVisitsCount) dom.footerVisitsCount.textContent = formattedVisits;
+    if (dom.footerDownloadsCount) dom.footerDownloadsCount.textContent = formattedDownloads;
+
+    if (dom.sidebarMetrics) dom.sidebarMetrics.classList.remove('hidden');
+    if (dom.footerMetrics) dom.footerMetrics.classList.remove('hidden');
+  }
+
+  async function initPortalMetrics() {
+    if (!METRICS_API_URL) return;
+
+    let alreadyCounted = false;
+    try {
+      alreadyCounted = Boolean(sessionStorage.getItem(VISIT_COUNTED_SESSION_KEY));
+    } catch {
+      alreadyCounted = false;
+    }
+
+    const action = alreadyCounted ? 'stats' : 'visit';
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), METRICS_TIMEOUT_MS);
+
+    try {
+      const response = await fetch(`${METRICS_API_URL}?action=${action}`, {
+        signal: controller.signal,
+      });
+      if (!response.ok) {
+        hidePortalMetrics();
+        return;
+      }
+
+      const payload = await response.json();
+      const parsed = parseMetricsPayload(payload);
+      if (!parsed) {
+        hidePortalMetrics();
+        return;
+      }
+
+      if (!alreadyCounted) {
+        try {
+          sessionStorage.setItem(VISIT_COUNTED_SESSION_KEY, '1');
+        } catch {
+          // Ignorar restricciones de sessionStorage en navegación privada
+        }
+      }
+
+      state.metricsVisits = parsed.visitas;
+      state.metricsDownloads = parsed.descargas;
+      state.metricsAvailable = true;
+      renderPortalMetrics(parsed.visitas, parsed.descargas);
+    } catch {
+      // Sin conexión o fallo del endpoint: ocultar suavemente sin errores ni NaN
+      hidePortalMetrics();
+    } finally {
+      clearTimeout(timeoutId);
+    }
+  }
+
+  function trackFileDownload(nombreArchivo) {
+    if (!METRICS_API_URL) return;
+
+    const cleanName = cleanText(nombreArchivo) || 'Archivo';
+    const now = Date.now();
+    if (state.lastTrackedDownloadKey === cleanName && now - state.lastTrackedDownloadAt < 800) {
+      return;
+    }
+    state.lastTrackedDownloadKey = cleanName;
+    state.lastTrackedDownloadAt = now;
+
+    // Actualización optimista (+1) inmediata si ya tenemos métricas cargadas
+    if (state.metricsAvailable && Number.isFinite(state.metricsDownloads)) {
+      state.metricsDownloads += 1;
+      renderPortalMetrics(state.metricsVisits, state.metricsDownloads);
+    }
+
+    const url = `${METRICS_API_URL}?action=download&archivo=${encodeURIComponent(cleanName)}`;
+    fetch(url, { keepalive: true })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((payload) => {
+        const parsed = parseMetricsPayload(payload);
+        if (!parsed) return;
+        state.metricsVisits = parsed.visitas;
+        state.metricsDownloads = parsed.descargas;
+        state.metricsAvailable = true;
+        renderPortalMetrics(parsed.visitas, parsed.descargas);
+      })
+      .catch(() => {
+        // Ignorar errores de red en silencio
+      });
+  }
+
   // --- Inicialización ---
 
   async function init() {
@@ -4691,6 +4862,9 @@
     setTopbarSearchModeUI('titulo');
     updateFavoritesBadges();
     bindEvents();
+
+    // Consultar o registrar visita global en paralelo sin demorar la apertura del catálogo
+    initPortalMetrics();
 
     const cachedEntry = loadCachedLiveCatalog();
 

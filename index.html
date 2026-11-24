@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=2.4" />
+  <link rel="stylesheet" href="styles.css?v=2.5" />
 </head>
 <body>
   <!-- Top Navigation Bar -->
@@ -200,6 +200,26 @@
       <div class="sidebar-footer">
         <div class="catalog-meta">
           <span id="catalogSummaryText">Cargando catálogo...</span>
+          <div id="sidebarMetrics" class="portal-metrics sidebar-metrics hidden" aria-label="Estadísticas globales del portal">
+            <span class="portal-metric-item" title="Visitas totales al portal">
+              <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <strong id="sidebarVisitsCount">0</strong>
+              <span>visitas</span>
+            </span>
+            <span class="portal-metric-sep" aria-hidden="true">·</span>
+            <span class="portal-metric-item" title="Archivos descargados o abiertos">
+              <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <strong id="sidebarDownloadsCount">0</strong>
+              <span>descargas</span>
+            </span>
+          </div>
           <span id="catalogSyncDateText" class="catalog-sync-date hidden"></span>
         </div>
       </div>
@@ -633,6 +653,27 @@
           </span>
         </div>
 
+        <div id="footerMetrics" class="portal-metrics footer-metrics hidden" aria-label="Estadísticas globales del portal">
+          <span class="portal-metric-item" title="Visitas totales al portal">
+            <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <strong id="footerVisitsCount">0</strong>
+            <span>visitas</span>
+          </span>
+          <span class="portal-metric-sep" aria-hidden="true">·</span>
+          <span class="portal-metric-item" title="Archivos descargados o abiertos">
+            <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <strong id="footerDownloadsCount">0</strong>
+            <span>descargas</span>
+          </span>
+        </div>
+
         <div class="doc-footer-authorship">
           <p class="doc-footer-author-line">
             <span>© <span id="footerCopyrightYear">2026</span></span>
@@ -995,6 +1036,6 @@
     </button>
   </div>
 
-  <script src="app.js?v=2.4"></script>
+  <script src="app.js?v=2.5"></script>
 </body>
 </html>
