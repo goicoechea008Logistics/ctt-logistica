@@ -2192,6 +2192,15 @@
   function renderSubjectCards(subjects, searchHighlightQuery = '') {
     dom.subjectsGrid.innerHTML = subjects
       .map((subj) => {
+        const isGeneralCollection =
+          String(subj.anio) === 'general' ||
+          subj.slug === 'libros-y-recursos-generales' ||
+          normalizeMatchKey(subj.cleanName) === 'libros y recursos generales';
+        const ctaText = isGeneralCollection ? 'Explorar biblioteca' : 'Abrir materia';
+        const cardAriaLabel = isGeneralCollection
+          ? `Explorar ${escapeHtml(subj.cleanName)}`
+          : `Abrir materia ${escapeHtml(subj.cleanName)}`;
+
         const subCount = subj.totalSubfoldersCount || (subj.subfolders ? subj.subfolders.length : 0);
         const subMeta =
           subCount > 0
@@ -2220,7 +2229,7 @@
             data-open-subject="${escapeHtml(subj.slug)}"
             tabindex="0"
             role="button"
-            aria-label="Abrir materia ${escapeHtml(subj.cleanName)}"
+            aria-label="${cardAriaLabel}"
           >
             <div class="subject-card-banner">
               ${bannerImgHtml}
@@ -2245,7 +2254,7 @@
               <div class="subject-card-footer">
                 <span class="subject-card-meta">${escapeHtml(subMeta)}</span>
                 <span class="subject-card-cta">
-                  <span>Abrir materia</span>
+                  <span>${ctaText}</span>
                   <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.2" fill="none">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
@@ -3250,11 +3259,15 @@
       }
 
       if (rootFolders.length > 0) {
+        const isGeneralFilter = state.selectedYear === 'general';
         dom.subjectsSection.classList.remove('hidden');
         dom.emptyState.classList.add('hidden');
-        dom.subjectsHeadingText.textContent =
-          state.selectedYear === 'general' ? 'Colecciones Disponibles' : 'Asignaturas del Semestre';
-        dom.subjectsCountLabel.textContent = `${rootFolders.length} ${rootFolders.length === 1 ? 'materia' : 'materias'}`;
+        dom.subjectsHeadingText.textContent = isGeneralFilter
+          ? 'Colecciones Disponibles'
+          : 'Asignaturas del Semestre';
+        dom.subjectsCountLabel.textContent = isGeneralFilter
+          ? `${rootFolders.length} ${rootFolders.length === 1 ? 'colección' : 'colecciones'}`
+          : `${rootFolders.length} ${rootFolders.length === 1 ? 'materia' : 'materias'}`;
         renderSubjectCards(rootFolders);
       } else {
         dom.subjectsSection.classList.add('hidden');
